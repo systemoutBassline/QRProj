@@ -12,7 +12,6 @@ import javax.persistence.*;
 
 public class AbstractEntity implements Serializable {
 
-	   
 	@Id
 	@GeneratedValue
 	private Long Id;
