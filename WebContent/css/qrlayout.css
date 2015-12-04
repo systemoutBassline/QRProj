@@ -1,0 +1,162 @@
+<style>
+
+body {
+	color: black;
+	font-family: "Trebuchet MS";
+}
+
+h1 {
+	color: black;
+	font-size: 25px;
+	text-shadow: 2px 2px #b5cbc5;
+	font-family: "Trebuchet MS";
+	float: center;
+}
+
+
+h2 {
+	color: black;
+	font-size: 20px;
+	text-shadow: 2px 2px #b5cbc5;
+	font-family: "Trebuchet MS";
+	float: center;
+}
+
+p {
+	font-family: "Trebuchet MS";
+	color: black;
+	font-size: 16px;
+	text-shadow: 1px 1px #b5cbc5;
+}
+
+button {
+	color: #000000;
+	background: #ffffff;
+	border: 1px solid #000000;
+	font-weight: bold;
+	font-family: "Trebuchet MS";
+	padding: 4px;
+	border-radius: 6px;
+	width: 60px;
+}
+
+table {
+	font-family: "Trebuchet MS";
+	color: #000000;
+	padding: 10px;
+	margin: auto;
+	float: center;
+	text-align: center;
+}
+
+
+.table1 {
+	font-family: "Trebuchet MS";
+	color: #000000;
+	padding: 10px;
+	margin: auto;
+	float: left;
+	text-align: left;
+}
+
+textarea{
+	width: 300px;
+	height: 120px;
+	border: 2px solid #cccccc;
+	padding: 5px;
+	font-family: "Trebuchet MS";
+	background-position: bottom right;
+	background-repeat: no-repeat;
+}
+
+
+div.box-shadow {
+    -webkit-box-shadow: 2px 2px 4px 1px #000000;
+    box-shadow: 2px 2px 4px 1px #000000;
+}
+
+input[type="text"] {
+	padding: 5px;
+	border: none;
+	border-bottom: solid 2px #c9c9c9;
+	transition: border 0.3s;
+}
+input[type="text"]:focus {
+	border: none;
+	border-bottom: solid 2px #969696;
+	transition: border 0.3s;
+}
+
+input[type="password"] {
+	padding: 5px;
+	border: none;
+	border-bottom: solid 2px #c9c9c9;
+	transition: border 0.3s;
+}
+input[type="password"]:focus {
+	border: none;
+	border-bottom: solid 2px #969696;
+	transition: border 0.3s;
+}
+
+textarea, input {
+	outline: none;
+}
+
+.mainbox1 {
+	border: 0;
+	width: 600px;
+}
+
+.main {
+	width: 600px;
+	margin: auto;
+	float: left;
+	padding: 10px;
+}
+
+.navbar {
+	float: left;
+}
+
+.navbar:li {
+	float: left;
+}
+
+.navbar:ul {
+	height: 50px;
+	width: 100px;
+	padding: 5px;
+	float: left;
+	/* Ensures that the menu doesn’t affect other elements */
+	border-right: 1px solid #ffffff;
+}
+
+.navcontainer {
+	width: 900px;
+	margin: 5;
+	padding: 5;
+	list-style-type: none;
+	float: center;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+	font-family: "Trebuchet Ms";
+}
+
+a:hover { 
+	color: gray;
+}
+
+li {
+	padding: 10px;
+	list-style: none;
+	text-align: left;
+	border: none;
+	border-bottom: solid 2px #c9c9c9;
+	transition: border 0.3s;
+}
+
+</style>
