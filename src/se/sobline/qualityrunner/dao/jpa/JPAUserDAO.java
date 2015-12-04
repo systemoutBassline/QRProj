@@ -18,12 +18,12 @@ public final class JPAUserDAO extends AbstractJPADAO<User> implements UserDAO {
 
 	@Override
 	public Collection<User>getUser(String username) {
-		return query("User.getUser", query -> query.setParameter("username", username));
+		return queryCollection("User.getUser", query -> query.setParameter("username", username));
 	}
 
 	@Override
 	public Collection<User> getAllUsers() {
-		return query("User.getAll", identity());
+		return queryCollection("User.getAll", identity());
 	}
 
 }
