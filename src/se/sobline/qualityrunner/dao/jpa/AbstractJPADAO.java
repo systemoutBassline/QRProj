@@ -1,6 +1,7 @@
 package se.sobline.qualityrunner.dao.jpa;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.function.Function;
 
 import javax.persistence.EntityManager;
@@ -19,6 +20,17 @@ public abstract class AbstractJPADAO<E extends AbstractEntity> implements CrudDA
 		this.factory = factory;
 		this.entityClass = entityClass;
 	}
+	
+	protected List<E> queryList(String queryName, Function<TypedQuery <E>, TypedQuery <E>> query) {
+		EntityManager manager = factory.createEntityManager();
+		try{
+			TypedQuery<E> typedQuery = manager.createNamedQuery(queryName, entityClass);
+			return query.apply(typedQuery).getResultList();
+		} finally {
+			manager.close();
+		}
+	}
+
 
 	@Override
 	public E saveOrUpdate(E entity) {
