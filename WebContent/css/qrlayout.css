@@ -186,10 +186,10 @@ li {
 }
 
 .productbutton:hover {
-	font-weight: bold;
+	color: gray;
 }
 
-.reviewDivInProduct:input {
+.reviewDivInProduct input[type="button"] {
 	border: 1px solid #000000;
 }
 

@@ -1,5 +1,6 @@
 package se.sobline.qualityrunner.controller;
 
+import java.sql.Savepoint;
 import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
@@ -12,6 +13,8 @@ import se.sobline.qualityrunner.dao.jpa.JPAProductDAO;
 import se.sobline.qualityrunner.dao.jpa.JPAReviewDAO;
 import se.sobline.qualityrunner.dao.jpa.JPAUserDAO;
 import se.sobline.qualityrunner.model.Product;
+import se.sobline.qualityrunner.model.Review;
+import se.sobline.qualityrunner.model.User;
 
 public final class Controller {
 
@@ -19,27 +22,52 @@ public final class Controller {
 	private final UserDAO userDAO;
 	private final ProductDAO productDAO;
 	private final ReviewDAO reviewDAO;
+
 	/**
-	 * Borde den här klassen läggas upp i sessionen? För att man skall ha samma objekt vilken
-	 * servlet man än använder?
+	 * Borde den här klassen läggas upp i sessionen? För att man skall ha samma
+	 * objekt vilken servlet man än använder?
 	 */
-	protected Controller() {
+	public Controller() {
 		userDAO = new JPAUserDAO(factory);
 		productDAO = new JPAProductDAO(factory);
 		reviewDAO = new JPAReviewDAO(factory);
 	}
-//
-//	public boolean userExists(String username) {
-//
-//		Collection<User> users = userDAO.getAllUsers();
-//		System.out.println("inside userExists");
-//		if(users.contains(username)) {
-//			return true;
-//		}
-//		return false;
-//	}
+
+	public Product createProduct(Product product) {
+		return productDAO.saveOrUpdate(product);
+	}
+
+	public Product getProduct(String productName) {
+		for (Product product : getAllProducts()) {
+			if (product.getName().equals(productName)) {
+				return product;
+			}
+		}
+		return null;
+	}
 
 	public List<Product> getAllProducts() {
 		return productDAO.getAll();
+	}
+
+	public User userExists(String username) {
+		for (User user : getUsers()) {
+			if (user.getUsername().equals(username)) {
+				return user;
+			}
+		}
+		return null;
+	}
+
+	public User createUser(String username, String password) {
+		return userDAO.saveOrUpdate(new User(username, password));
+	}
+
+	public List<User> getUsers() {
+		return userDAO.getAllUsers();
+	}
+
+	public Review createReview(Review review) {
+		return reviewDAO.saveOrUpdate(review);
 	}
 }

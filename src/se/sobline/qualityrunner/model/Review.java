@@ -5,11 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
+
 @Entity
 @NamedQuery(name = "Review.getProductReview", query = "SELECT r FROM Review r WHERE r.product.name = :name")
 public class Review extends AbstractEntity {
 	
-//	@OneToMany(optional = false)
+	@Ignore
+	private static final long serialVersionUID = 1L;
+
+	@ManyToOne(optional = false)
 	private User user;
 	
 	@Column(nullable = false)
@@ -28,7 +33,8 @@ public class Review extends AbstractEntity {
 		
 	}
 
-	public Review(String text, int grade, String title, Product product) {
+	public Review(User user, String text, int grade, String title, Product product) {
+		this.user = user;
 		this.text = text;
 		this.grade = grade;
 		this.title = title;
