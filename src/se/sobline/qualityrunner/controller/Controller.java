@@ -88,6 +88,7 @@ public final class Controller {
 	}
 
 	public List<Review> getReviews() {
+		
 		return reviewDAO.getReviews();
 	}
 }

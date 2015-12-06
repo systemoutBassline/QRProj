@@ -49,12 +49,13 @@ public final class ProductServlet extends HttpServlet {
 
 		if (getCurrentProduct(controller, productName) != null) {
 			Product product =getCurrentProduct(controller, productName);
-//			List<Review> productReviews = product.getReviews();	
+			List<Review> productReviews = product.getReviews();	
 			request.setAttribute("product", product);
-//			request.setAttribute("productReviews", productReviews);
-//			getServletContext().getRequestDispatcher("/ops.jsp").forward(request, response);	
+			request.setAttribute("productReviews", productReviews);
+			getServletContext().getRequestDispatcher("/product.jsp").forward(request, response);
+		} else {
+			getServletContext().getRequestDispatcher("/ops.jsp").forward(request, response);				
 		}
-		getServletContext().getRequestDispatcher("/product.jsp").forward(request, response);
 	}
 
 	private Product getCurrentProduct(Controller controller, String productName) {

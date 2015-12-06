@@ -23,6 +23,7 @@
 		d+wajwfd+9a jidakmmwdöawmåpirhgur
 	<br />
 	<br />
+	
 	<div class="reviewDivInProduct">
 		<form action="ReviewServlet" method="post">
 			<input type="button" class="productbutton" value="read reviews" /> 
@@ -30,13 +31,12 @@
 			<input type="button" class="productbutton" value="grade: ${product.grade}/10" />
 		</form>
 		<br />
+		<!-- Kanske sortera reviews så högst betygsatta review är överst -->
 		<c:forEach var="review" items="${productReviews}">
-
-			<div class="reviewdiv">
-				${review.title} <br /> ${review.text} <br /> ${review.grade}/10 <br />
-				<input type="submit" name="reviewname" class="productbutton" value="${review.title}" /><br />
+			<div>
+				<b>${review.title}</b> - ${review.grade}/10 <br /> ${review.text}
 			</div>
-
+			<br />
 		</c:forEach>
 	</div>
 
