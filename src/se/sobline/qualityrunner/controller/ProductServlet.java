@@ -1,7 +1,7 @@
 package se.sobline.qualityrunner.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import se.sobline.qualityrunner.model.Product;
+import se.sobline.qualityrunner.model.Review;
 
 /**
  * Servlet implementation class ProductServlet
@@ -28,11 +29,13 @@ public final class ProductServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Controller controller = getController(request);
-		request.setAttribute("products", controller.getAllProducts());
-
-		System.out.println("size: " + controller.getAllProducts().size());
-
-		getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
+		
+		if (controller.getAllProducts() != null) {
+			request.setAttribute("products", controller.getAllProducts());
+			getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
+		} else {
+			getServletContext().getRequestDispatcher("/ops.jsp").forward(request, response);
+		}
 	}
 
 	/**
@@ -42,16 +45,25 @@ public final class ProductServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Controller controller = getController(request);
+		String productName = request.getParameter("productname");
 
-		String productname = request.getParameter("productname");
+		if (getCurrentProduct(controller, productName) != null) {
+			Product product =getCurrentProduct(controller, productName);
+//			List<Review> productReviews = product.getReviews();	
+			request.setAttribute("product", product);
+//			request.setAttribute("productReviews", productReviews);
+//			getServletContext().getRequestDispatcher("/ops.jsp").forward(request, response);	
+		}
+		getServletContext().getRequestDispatcher("/product.jsp").forward(request, response);
+	}
 
-		for (Product p : controller.getAllProducts()) {
-			if (p.getName().equals(productname)) {
-				request.setAttribute("product", p);
+	private Product getCurrentProduct(Controller controller, String productName) {
+		for (Product product : controller.getAllProducts()) {
+			if (product.getName().equals(productName)) {
+				return product;
 			}
 		}
-		
-		getServletContext().getRequestDispatcher("/product.jsp").forward(request, response);
+		return null;
 	}
 
 	/***

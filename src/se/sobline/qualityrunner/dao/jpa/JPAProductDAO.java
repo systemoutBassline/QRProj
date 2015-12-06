@@ -17,6 +17,6 @@ public final class JPAProductDAO extends AbstractJPADAO<Product> implements Prod
 
 	@Override
 	public List<Product> getAll() {
-		return queryList("Product.getAll", identity());
+		return query("Product.getAll", identity());
 	}
 }

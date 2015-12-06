@@ -16,7 +16,7 @@
 			<div class="navbar">
 				<ul>
 					<li><a href="./ProductServlet" target="main">Products</a></li>
-					<li><a href="reviews.jsp" target="main">Reviews</a></li>
+					<li><a href="./ReviewServlet" target="main">Reviews</a></li>
 				</ul>
 			</div>
 

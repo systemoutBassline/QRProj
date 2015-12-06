@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import se.sobline.qualityrunner.model.Product;
+
 /**
  * Servlet implementation class ReviewServlet
  */
@@ -32,7 +34,9 @@ public final class ReviewServlet extends HttpServlet {
 		Controller controller = getController(request);
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
-		out.print("<html><body>" + "Review goes here!" + "</body></html>");
+		Product product = (Product) request.getAttribute("product");
+		out.print("<html><body>" + product.getName() + "</body></html>");
+		
 	}
 
 	/**

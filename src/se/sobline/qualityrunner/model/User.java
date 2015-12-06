@@ -1,8 +1,8 @@
 package se.sobline.qualityrunner.model;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,7 +35,7 @@ public class User extends AbstractEntity implements Serializable {
 	private String password;
 	
 	@OneToMany
-	private Collection<Review> reviews;
+	private List<Review> reviews;
 
 	protected User() {
 		super();
@@ -44,7 +44,7 @@ public class User extends AbstractEntity implements Serializable {
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
-		this.reviews = new HashSet<>();
+		this.reviews = new ArrayList<>();
 	}
 	
 	public Review add(Review review) {
@@ -64,7 +64,7 @@ public class User extends AbstractEntity implements Serializable {
 		this.password = password;
 	}
 	
-	public Collection<Review> getReviews() {
+	public List<Review> getReviews() {
 		return reviews;
 	}
 }

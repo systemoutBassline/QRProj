@@ -29,6 +29,15 @@
 			<input type="button" class="productbutton" value="write review" /> 
 			<input type="button" class="productbutton" value="grade: ${product.grade}/10" />
 		</form>
+		<br />
+		<c:forEach var="review" items="${productReviews}">
+
+			<div class="reviewdiv">
+				${review.title} <br /> ${review.text} <br /> ${review.grade}/10 <br />
+				<input type="submit" name="reviewname" class="productbutton" value="${review.title}" /><br />
+			</div>
+
+		</c:forEach>
 	</div>
 
 </h:body>

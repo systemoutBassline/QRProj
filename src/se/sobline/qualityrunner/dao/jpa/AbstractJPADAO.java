@@ -74,7 +74,7 @@ public abstract class AbstractJPADAO<E extends AbstractEntity> implements CrudDA
 		}
 	}
 	
-	protected List<E> queryList(String queryName, Function<TypedQuery <E>, TypedQuery <E>> query) {
+	protected List<E> query(String queryName, Function<TypedQuery <E>, TypedQuery <E>> query) {
 		EntityManager manager = factory.createEntityManager();
 		try{
 			TypedQuery<E> typedQuery = manager.createNamedQuery(queryName, entityClass);
