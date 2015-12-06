@@ -33,6 +33,8 @@ public final class Controller {
 		reviewDAO = new JPAReviewDAO(factory);
 	}
 
+	/* PRODUCT */
+
 	public Product createProduct(Product product) {
 		return productDAO.saveOrUpdate(product);
 	}
@@ -48,6 +50,12 @@ public final class Controller {
 
 	public List<Product> getAllProducts() {
 		return productDAO.getAll();
+	}
+
+	/* USER */
+
+	public User uppdateUser(User user) {
+		return userDAO.saveOrUpdate(user);
 	}
 
 	public User userExists(String username) {
@@ -67,7 +75,19 @@ public final class Controller {
 		return userDAO.getAllUsers();
 	}
 
+	/* REVIEW */
+
 	public Review createReview(Review review) {
+		// den kan lägga in dubletter
+		User user = userExists(review.getUser().getUsername());
+		if (!user.getReviews().contains(review)) {
+			user.add(review);
+			user = uppdateUser(user);
+		}
 		return reviewDAO.saveOrUpdate(review);
+	}
+
+	public List<Review> getReviews() {
+		return reviewDAO.getReviews();
 	}
 }

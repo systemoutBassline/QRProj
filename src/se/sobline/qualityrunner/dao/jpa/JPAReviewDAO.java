@@ -1,14 +1,22 @@
 package se.sobline.qualityrunner.dao.jpa;
 
+import static java.util.function.Function.identity;
+
+import java.util.List;
+
 import javax.persistence.EntityManagerFactory;
 
 import se.sobline.qualityrunner.dao.ReviewDAO;
 import se.sobline.qualityrunner.model.Review;
-import se.sobline.qualityrunner.model.User;
 
 public final class JPAReviewDAO extends AbstractJPADAO<Review> implements ReviewDAO {
 
 	public JPAReviewDAO(EntityManagerFactory factory) {
 		super(Review.class, factory);
 	}
+
+	@Override
+	public List<Review> getReviews() {
+		return queryList("Review.getAll", identity());
+	}	
 }

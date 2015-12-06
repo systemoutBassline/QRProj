@@ -20,6 +20,7 @@ public class AbstractEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long Id;
+	
 	@Ignore
 	private static final long serialVersionUID = 1L;
 
