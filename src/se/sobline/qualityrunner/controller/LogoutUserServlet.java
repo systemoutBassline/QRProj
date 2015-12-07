@@ -34,7 +34,7 @@ public class LogoutUserServlet extends HttpServlet {
 		if (session != null) {
 			session.removeAttribute("Authenticated");
 			session.invalidate();
-			response.sendRedirect("/QR/login.jsp");
+			response.sendRedirect("index.jsp");
 		}
 
 		response.getWriter().append("Served at: ").append(request.getContextPath());

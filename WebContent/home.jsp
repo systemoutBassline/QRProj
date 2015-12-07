@@ -18,6 +18,7 @@
 				<ul>
 					<li><a href="./ProductServlet" target="main">Products</a></li>
 					<li><a href="./ReviewServlet" target="main">Reviews</a></li>
+					<li><a href="./LogoutUserServlet">Logout</a></li>
 				</ul>
 			</div>
 
