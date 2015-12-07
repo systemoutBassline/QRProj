@@ -33,8 +33,6 @@ public final class FrontController {
 		reviewDAO = new JPAReviewDAO(factory);
 	}
 
-	/* PRODUCT */
-
 	public Product createProduct(Product product) {
 		return productDAO.saveOrUpdate(product);
 	}
@@ -51,8 +49,6 @@ public final class FrontController {
 	public List<Product> getProducts() {
 		return productDAO.getAll();
 	}
-
-	/* USER */
 
 	public User uppdateUser(User user) {
 		return userDAO.saveOrUpdate(user);
@@ -74,8 +70,6 @@ public final class FrontController {
 	public List<User> getUsers() {
 		return userDAO.getAllUsers();
 	}
-
-	/* REVIEW */
 
 	public Review createReview(Review review) {
 		// den kan lägga in dubletter
