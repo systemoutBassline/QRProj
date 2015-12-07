@@ -42,18 +42,19 @@ public final class RegisterUserServlet extends HttpServlet {
 		getServletContext();
 
 		if (controller.userExists(username) != null) {
-			System.out.println("eh?");
-			controller.createUser(username, password);
-
-			getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
-
-		} else {
+			
 			rd = getServletContext().getRequestDispatcher("/index.jsp");
 			out = response.getWriter();
 
 			out.println("<h1><center><font color=red family=Trebuchent ms>User already exists!</font></center></h1>");
 
 			rd.include(request, response);
+
+		} else {
+			System.out.println("eh?");
+			controller.createUser(username, password);
+
+			getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 		}
 	}
 }
