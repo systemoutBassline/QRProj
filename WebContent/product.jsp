@@ -9,11 +9,11 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="css/qrlayout.css" rel="stylesheet" type="text/css" />
-	<title>QR - ${product.name}</title>
+	<title>QR - ${currentProduct.name}</title>
 </h:head>
 <h:body>
 
-	<h2>${product.name}</h2>
+	<h2>${currentProduct.name}</h2>
 
 	<b>Info:</b> some text here about the product, so ill just
 		blurt letter for the rest of the bit or whatever.. <br /> adnaugeau f
@@ -26,9 +26,9 @@
 	
 	<div class="reviewDivInProduct">
 		<form action="ReviewServlet" method="post">
-			<input type="button" class="productbutton" value="read reviews" /> 
+			<a href="reviews.jsp" target="main">write review</a>
 			<input type="button" class="productbutton" value="write review" /> 
-			<input type="button" class="productbutton" value="grade: ${product.grade}/10" />
+			<input type="button" class="productbutton" value="grade: ${currentProduct.grade}/10" />
 		</form>
 		<br />
 		<!-- Kanske sortera reviews så högst betygsatta review är överst -->

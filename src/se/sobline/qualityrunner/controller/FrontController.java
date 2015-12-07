@@ -86,11 +86,18 @@ public final class FrontController {
 
 	public Review createReview(Review review) {
 		User user = userExists(review.getUser().getUsername());
+		Product product = getProduct(review.getProduct().getName());
 
 		if (!user.getReviews().contains(review)) {
 			user.add(review);
 			user = updateUser(user);
 		}
+		
+		if (!product.getReviews().contains(review)) {
+			product.add(review);;
+			product = createProduct(product);
+		}
+		
 		return reviewDAO.saveOrUpdate(review);
 	}
 
