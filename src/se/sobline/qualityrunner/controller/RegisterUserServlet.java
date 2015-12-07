@@ -37,7 +37,7 @@ public final class RegisterUserServlet extends HttpServlet {
 		RequestDispatcher rd;
 		PrintWriter out;
 		
-		Controller controller = new Controller();
+		FrontController controller = new FrontController();
 		
 		getServletContext();
 		

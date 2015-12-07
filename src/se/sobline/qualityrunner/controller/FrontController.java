@@ -1,6 +1,5 @@
 package se.sobline.qualityrunner.controller;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
@@ -16,26 +15,26 @@ import se.sobline.qualityrunner.model.Product;
 import se.sobline.qualityrunner.model.Review;
 import se.sobline.qualityrunner.model.User;
 
-public final class Controller {
+public final class FrontController {
 
 	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory("QR");
 	private final UserDAO userDAO;
 	private final ProductDAO productDAO;
 	private final ReviewDAO reviewDAO;
 
-	protected Controller() {
+	protected FrontController() {
 		userDAO = new JPAUserDAO(factory);
 		productDAO = new JPAProductDAO(factory);
-		reviewDAO = new JPAReviewDAO(factory);	
+		reviewDAO = new JPAReviewDAO(factory);
 	}
-	
+
 	public Product createProduct(Product product) {
 		return productDAO.saveOrUpdate(product);
 	}
-	
+
 	public Product getProduct(String productName) {
-		for(Product product : getProducts()) {
-			if(product.getName().equals(productName)) {
+		for (Product product : getProducts()) {
+			if (product.getName().equals(productName)) {
 				return product;
 			}
 		}
@@ -49,7 +48,7 @@ public final class Controller {
 	public User updateUser(User user) {
 		return userDAO.saveOrUpdate(user);
 	}
-	
+
 	public User userExists(String username) {
 		for (User user : getUsers()) {
 			if (user.getUsername().equals(username)) {
@@ -62,27 +61,27 @@ public final class Controller {
 	public User createUser(String username, String password) {
 		return userDAO.saveOrUpdate(new User(username, password));
 	}
-	
+
 	public List<User> getUsers() {
 		return userDAO.getAllUsers();
 	}
 
 	public boolean checkLogin(String username, String password) {
 
-		Collection<User> users = userDAO.getAllUsers();
-
-		if (users.contains(username)) {
-			if (users.contains(password)) {
-				return true;
+		for (User user : getUsers()) {
+			if (user.getUsername().equals(username)) {
+				if (user.getPassword().equals(password)) {
+					return true;
+				}
 			}
 		}
 		return false;
 	}
-	
+
 	public Review createReview(Review review) {
 		User user = userExists(review.getUser().getUsername());
-		
-		if(!user.getReviews().contains(review)) {
+
+		if (!user.getReviews().contains(review)) {
 			user.add(review);
 			user = updateUser(user);
 		}
