@@ -72,8 +72,8 @@ public final class FrontController {
 	}
 
 	public Review createReview(Review review) {
-		// den kan lägga in dubletter
 		User user = userExists(review.getUser().getUsername());
+		
 		if (!user.getReviews().contains(review)) {
 			user.add(review);
 			user = uppdateUser(user);
