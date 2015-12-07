@@ -1,8 +1,8 @@
 package se.sobline.qualityrunner.dao.jpa;
 
-import java.util.Collection;
-
 import static java.util.function.Function.identity;
+
+import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
 
@@ -17,7 +17,7 @@ public final class JPAProductDAO extends AbstractJPADAO<Product> implements Prod
 	}
 
 	@Override
-	public Collection<Product> getAll() {
+	public List<Product> getAll() {
 		return query("Product.getAll", identity());
 	}
 

@@ -9,7 +9,7 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name = "Review.getProductReview", query = "SELECT r FROM Review r WHERE r.product.name = :name")
 public class Review extends AbstractEntity {
 	
-//	@OneToMany(optional = false)
+	@ManyToOne(optional = false)
 	private User user;
 	
 	@Column(nullable = false)
@@ -28,7 +28,8 @@ public class Review extends AbstractEntity {
 		
 	}
 
-	public Review(String text, int grade, String title, Product product) {
+	public Review(User user, String text, int grade, String title, Product product) {
+		this.user = user;
 		this.text = text;
 		this.grade = grade;
 		this.title = title;
@@ -49,6 +50,10 @@ public class Review extends AbstractEntity {
 	
 	public Product getProduct() {
 		return product;
+	}
+
+	public User getUser() {
+		return user;
 	}
 
 }

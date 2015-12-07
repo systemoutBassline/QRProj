@@ -1,11 +1,17 @@
 package se.sobline.qualityrunner.model;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.*;
-import se.sobline.qualityrunner.model.AbstractEntity;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import jdk.nashorn.internal.ir.annotations.Ignore;
 
 /**
  * Entity implementation class for Entity: User
@@ -19,6 +25,7 @@ import se.sobline.qualityrunner.model.AbstractEntity;
 @Entity
 public class User extends AbstractEntity implements Serializable {
 
+	@Ignore
 	private static final long serialVersionUID = 1L;
 	
 	@Column(nullable = false, unique = true)
@@ -27,8 +34,8 @@ public class User extends AbstractEntity implements Serializable {
 	@Column(nullable = false)
 	private String password;
 	
-//	@ManyToOne(optional = true)
-	private Collection<Review> reviews;
+	@OneToMany
+	private List<Review> reviews;
 
 	protected User() {
 		super();
@@ -37,7 +44,12 @@ public class User extends AbstractEntity implements Serializable {
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
-		this.reviews = new HashSet<>();
+		this.reviews = new ArrayList<>();
+	}
+	
+	public Review add(Review review) {
+		reviews.add(review);
+		return review;
 	}
 	
 	public String getUsername() {
@@ -50,5 +62,9 @@ public class User extends AbstractEntity implements Serializable {
    
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public List<Review> getReviews() {
+		return reviews;
 	}
 }

@@ -1,12 +1,15 @@
 package se.sobline.qualityrunner.model;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+
+import jdk.nashorn.internal.ir.annotations.Ignore;
 
 /**
  * Entity implementation class for Entity: Product
@@ -16,7 +19,7 @@ import javax.persistence.OneToMany;
 @NamedQuery(name = "Product.getAll", query = "SELECT p FROM Product p")
 public class Product extends AbstractEntity implements Serializable {
 
-	
+	@Ignore
 	private static final long serialVersionUID = 1L;
 
 	@Column(nullable = false)
@@ -29,7 +32,7 @@ public class Product extends AbstractEntity implements Serializable {
 	private String imgURL;
 	
 	@OneToMany
-	private Collection<Review> reviews;
+	private List<Review> reviews;
 	
 	protected Product() {
 		super();
@@ -39,6 +42,7 @@ public class Product extends AbstractEntity implements Serializable {
 		this.name = name;
 		this.grade = grade;
 		this.imgURL = imgURL;
+		this.reviews = new ArrayList<>();
 	}
 	
 	public String getName() {
@@ -51,6 +55,10 @@ public class Product extends AbstractEntity implements Serializable {
 	
 	public String getImgURL() {
 		return imgURL;
+	}
+
+	public List<Review> getReviews() {
+		return reviews;
 	}
    
 }

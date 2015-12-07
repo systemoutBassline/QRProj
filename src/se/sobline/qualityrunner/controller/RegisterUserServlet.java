@@ -41,7 +41,7 @@ public final class RegisterUserServlet extends HttpServlet {
 		
 		getServletContext();
 		
-		if(!controller.userExists(username)) {
+		if(controller.userExists(username) != null) {
 			System.out.println("eh?");
 			controller.createUser(username, password);
 			

@@ -17,18 +17,7 @@ public class Main {
 	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory("QR");
 	
 	private static void addData(){
-		EntityManager manager = factory.createEntityManager();
-		
-		manager.getTransaction().begin();
-		
-		Product product = new Product("Sennheiser", 5, "http://images.tagseoblog.de/bilder/bild-foto/bild.jpg");
-		User user = new User("Name", "Password");
-		Review review = new Review("Sånt där grejs", 8, "AJAH", product);
-		manager.persist(product);
-		manager.persist(user);
-		manager.persist(review);
-		manager.getTransaction().commit();
-		manager.close();
+
 	}
 	
 	public static void main(String[] args) {

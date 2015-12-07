@@ -2,7 +2,6 @@ package se.sobline.qualityrunner.dao.jpa;
 
 import static java.util.function.Function.identity;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
@@ -18,13 +17,8 @@ public final class JPAUserDAO extends AbstractJPADAO<User> implements UserDAO {
 	}
 
 	@Override
-	public Collection<User>getUser(String username) {
-		return query("User.getUser", query -> query.setParameter("username", username));
-	}
-
-	@Override
 	public List<User> getAllUsers() {
-		return queryList("User.getAll", identity());
+		return query("User.getAll", identity());
 	}
 
 }
