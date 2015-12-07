@@ -27,6 +27,7 @@ public final class FrontController {
 	 * objekt vilken servlet man än använder?
 	 */
 	public FrontController() {
+
 		userDAO = new JPAUserDAO(factory);
 		productDAO = new JPAProductDAO(factory);
 		reviewDAO = new JPAReviewDAO(factory);
@@ -52,7 +53,7 @@ public final class FrontController {
 	public User updateUser(User user) {
 		return userDAO.saveOrUpdate(user);
 	}
-	
+
 	public User userExists(String username) {
 		for (User user : getUsers()) {
 			if (user.getUsername().equals(username)) {
@@ -71,22 +72,22 @@ public final class FrontController {
 	}
 
 	public boolean checkLogin(String username, String password) {
-		
-		
+
 		for (User user : getUsers()) {
 			if (user.getUsername().equals(username)) {
-				if (user.getPassword().equals(password))
+				if (user.getPassword().equals(password)) {
 					return true;
+				}
 			}
 		}
 
 		return false;
 	}
-	
+
 	public Review createReview(Review review) {
 		User user = userExists(review.getUser().getUsername());
-		
-		if(!user.getReviews().contains(review)) {
+
+		if (!user.getReviews().contains(review)) {
 			user.add(review);
 			user = updateUser(user);
 		}

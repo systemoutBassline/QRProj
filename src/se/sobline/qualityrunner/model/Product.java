@@ -59,8 +59,8 @@ public class Product extends AbstractEntity implements Serializable {
 	
 	public String getImgURL() {
 		return imgURL;
-	}
-	
+	}	
+
 	public List<Review> getReviews() {
 		return reviews;
 	}
