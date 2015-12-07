@@ -14,12 +14,18 @@
 </h:head>
 <h:body>
 
-	<c:forEach var="product" items="${products}">
+	<form action="ProductServlet" method="post">
+		<c:forEach var="product" items="${products}">
 
-		${product.productname}
-		<br />
+			<div class="productdiv">
 
-	</c:forEach>
+				<img src="${product.imgURL}" alt="placeholder" class="productimg" />
+
+				<input type="submit" name="productname" class="productbutton" value="${product.name}" /><br />
+			</div>
+
+		</c:forEach>
+	</form>
 
 </h:body>
 </html>

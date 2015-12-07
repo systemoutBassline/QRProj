@@ -11,7 +11,6 @@ import se.sobline.qualityrunner.model.Product;
 
 public final class JPAProductDAO extends AbstractJPADAO<Product> implements ProductDAO {
 
-
 	public JPAProductDAO(EntityManagerFactory factory) {
 		super(Product.class, factory);
 	}
@@ -20,5 +19,4 @@ public final class JPAProductDAO extends AbstractJPADAO<Product> implements Prod
 	public List<Product> getAll() {
 		return query("Product.getAll", identity());
 	}
-
 }

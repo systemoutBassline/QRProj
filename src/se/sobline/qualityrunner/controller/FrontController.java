@@ -22,7 +22,12 @@ public final class FrontController {
 	private final ProductDAO productDAO;
 	private final ReviewDAO reviewDAO;
 
-	protected FrontController() {
+	/**
+	 * Borde den här klassen läggas upp i sessionen? För att man skall ha samma
+	 * objekt vilken servlet man än använder?
+	 */
+	public FrontController() {
+
 		userDAO = new JPAUserDAO(factory);
 		productDAO = new JPAProductDAO(factory);
 		reviewDAO = new JPAReviewDAO(factory);
@@ -75,6 +80,7 @@ public final class FrontController {
 				}
 			}
 		}
+
 		return false;
 	}
 
@@ -86,5 +92,9 @@ public final class FrontController {
 			user = updateUser(user);
 		}
 		return reviewDAO.saveOrUpdate(review);
+	}
+
+	public List<Review> getReviews() {
+		return reviewDAO.getReviews();
 	}
 }

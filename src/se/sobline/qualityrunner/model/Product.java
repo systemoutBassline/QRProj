@@ -45,6 +45,10 @@ public class Product extends AbstractEntity implements Serializable {
 		this.reviews = new ArrayList<>();
 	}
 	
+	public void add(Review review) {
+		reviews.add(review);
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -60,5 +64,4 @@ public class Product extends AbstractEntity implements Serializable {
 	public List<Review> getReviews() {
 		return reviews;
 	}
-   
 }

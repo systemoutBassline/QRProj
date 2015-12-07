@@ -48,6 +48,7 @@ public class LoginUserServlet extends HttpServlet {
 		
 		FrontController controller = new FrontController();
 		HttpSession session = request.getSession();
+
 		RequestDispatcher rd;
 		PrintWriter out;
 		

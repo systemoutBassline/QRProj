@@ -1,8 +1,13 @@
 package se.sobline.qualityrunner.model;
 
 import java.io.Serializable;
-import java.lang.Long;
-import javax.persistence.*;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+import jdk.nashorn.internal.ir.annotations.Ignore;
 
 /**
  * Entity implementation class for Entity: AbstractEntity
@@ -13,8 +18,10 @@ import javax.persistence.*;
 public class AbstractEntity implements Serializable {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long Id;
+	
+	@Ignore
 	private static final long serialVersionUID = 1L;
 
 	public AbstractEntity() {
