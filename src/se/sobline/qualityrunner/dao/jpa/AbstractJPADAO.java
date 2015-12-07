@@ -1,6 +1,5 @@
 package se.sobline.qualityrunner.dao.jpa;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
 
@@ -20,7 +19,7 @@ public abstract class AbstractJPADAO<E extends AbstractEntity> implements CrudDA
 		this.factory = factory;
 		this.entityClass = entityClass;
 	}
-
+	
 	@Override
 	public E saveOrUpdate(E entity) {
 		if(entity.getId() == null) {

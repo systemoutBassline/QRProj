@@ -1,6 +1,5 @@
 package se.sobline.qualityrunner.controller;
 
-import java.sql.Savepoint;
 import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
@@ -50,10 +49,10 @@ public final class FrontController {
 		return productDAO.getAll();
 	}
 
-	public User uppdateUser(User user) {
+	public User updateUser(User user) {
 		return userDAO.saveOrUpdate(user);
 	}
-
+	
 	public User userExists(String username) {
 		for (User user : getUsers()) {
 			if (user.getUsername().equals(username)) {
@@ -71,12 +70,25 @@ public final class FrontController {
 		return userDAO.getAllUsers();
 	}
 
+	public boolean checkLogin(String username, String password) {
+		
+		
+		for (User user : getUsers()) {
+			if (user.getUsername().equals(username)) {
+				if (user.getPassword().equals(password))
+					return true;
+			}
+		}
+
+		return false;
+	}
+	
 	public Review createReview(Review review) {
 		User user = userExists(review.getUser().getUsername());
 		
-		if (!user.getReviews().contains(review)) {
+		if(!user.getReviews().contains(review)) {
 			user.add(review);
-			user = uppdateUser(user);
+			user = updateUser(user);
 		}
 		return reviewDAO.saveOrUpdate(review);
 	}

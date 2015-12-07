@@ -18,5 +18,5 @@ public final class JPAReviewDAO extends AbstractJPADAO<Review> implements Review
 	@Override
 	public List<Review> getReviews() {
 		return query("Review.getAll", identity());
-	}	
+	}
 }

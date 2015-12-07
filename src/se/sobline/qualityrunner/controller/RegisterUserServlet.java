@@ -2,6 +2,10 @@ package se.sobline.qualityrunner.controller;
 
 import java.io.IOException;
 
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,15 +36,27 @@ public final class RegisterUserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		FrontController controller = new FrontController();
-		HttpSession session = request.getSession();
 		String username = request.getParameter("userName");
 		String password = request.getParameter("password");
-		
-		if(controller.userExists(username) != null) {			
-			User user = controller.createUser(username, password);
-			session.setAttribute("user", user);
+
+		RequestDispatcher rd;
+		PrintWriter out;
+
+		getServletContext();
+
+		if (controller.userExists(username) != null) {
+			System.out.println("eh?");
+			controller.createUser(username, password);
+
+			getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+
 		} else {
-			
+			rd = getServletContext().getRequestDispatcher("/index.jsp");
+			out = response.getWriter();
+
+			out.println("<h1><center><font color=red family=Trebuchent ms>User already exists!</font></center></h1>");
+
+			rd.include(request, response);
 		}
 	}
 }

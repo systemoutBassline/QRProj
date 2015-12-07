@@ -16,7 +16,7 @@
 
 	<center><h1>Welcome to QualityRunner!</h1></center>
 	
-<form action="LoginServlet" method="post">
+<form action="LoginUserServlet" method="post">
 <center><div style="border: 1px solid; width: 30%; box-shadow: 2px 2px 4px 1px #000000;"><center><h2>Sign in</h2></center>
 	
 	<table>
@@ -35,7 +35,7 @@
 	
 	
 	<br/>
-	<form action="RegisterServlet" method="post">
+	<form action="RegisterUserServlet" method="post">
 	<center><div style="border: 1px solid; width: 30%; box-shadow: 2px 2px 4px 1px #000000;">
 	<center><h2>Registration</h2></center>
 	<table>

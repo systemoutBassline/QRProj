@@ -15,10 +15,14 @@ import jdk.nashorn.internal.ir.annotations.Ignore;
 })
 
 public class Review extends AbstractEntity {
+<<<<<<< HEAD
+	
+=======
 
 	@Ignore
 	private static final long serialVersionUID = 1L;
 
+>>>>>>> refs/remotes/origin/ninja
 	@ManyToOne(optional = false)
 	private User user;
 
@@ -64,6 +68,10 @@ public class Review extends AbstractEntity {
 
 	public Product getProduct() {
 		return product;
+	}
+
+	public User getUser() {
+		return user;
 	}
 
 }

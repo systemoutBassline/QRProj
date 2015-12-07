@@ -43,10 +43,13 @@ public class Product extends AbstractEntity implements Serializable {
 		this.grade = grade;
 		this.imgURL = imgURL;
 		this.reviews = new ArrayList<>();
+<<<<<<< HEAD
+=======
 	}
 	
 	public void add(Review review) {
 		reviews.add(review);
+>>>>>>> refs/remotes/origin/ninja
 	}
 	
 	public String getName() {
@@ -60,7 +63,15 @@ public class Product extends AbstractEntity implements Serializable {
 	public String getImgURL() {
 		return imgURL;
 	}
+<<<<<<< HEAD
+
 	public List<Review> getReviews() {
 		return reviews;
 	}
+   
+=======
+	public List<Review> getReviews() {
+		return reviews;
+	}
+>>>>>>> refs/remotes/origin/ninja
 }

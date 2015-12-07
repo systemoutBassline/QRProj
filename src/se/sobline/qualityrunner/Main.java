@@ -1,5 +1,8 @@
 package se.sobline.qualityrunner;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import se.sobline.qualityrunner.controller.FrontController;
 import se.sobline.qualityrunner.model.Product;
 import se.sobline.qualityrunner.model.Review;
@@ -7,6 +10,8 @@ import se.sobline.qualityrunner.model.User;
 
 public class Main {
 
+	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory("QR");
+	
 	private static void addData(FrontController controller) {
 
 		System.out.println("addData()");
@@ -28,6 +33,7 @@ public class Main {
 			User user = controller.createUser(username, password);
 			User user2 = controller.createUser(username2, password);
 			User user3 = controller.createUser(username3, password);
+
 		}
 
 		System.out.println("--- --- --- PRODUCTS --- --- ---");
