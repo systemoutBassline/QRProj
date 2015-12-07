@@ -108,5 +108,5 @@ public class Main {
 		FrontController controller = new FrontController();
 		addData(controller);
 	}
-
+	
 }
