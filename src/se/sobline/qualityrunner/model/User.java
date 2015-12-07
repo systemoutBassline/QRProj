@@ -63,11 +63,7 @@ public class User extends AbstractEntity implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-<<<<<<< HEAD
-
-=======
 	
->>>>>>> refs/remotes/origin/ninja
 	public List<Review> getReviews() {
 		return reviews;
 	}

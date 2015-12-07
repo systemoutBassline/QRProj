@@ -9,20 +9,14 @@ import javax.persistence.NamedQuery;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 
 @Entity
-@NamedQueries(value = { 
-		@NamedQuery(name = "Review.getAll", query = "SELECT r FROM Review r"),
-		@NamedQuery(name = "Review.getProductReview", query = "SELECT r FROM Review r WHERE r.product.name = :name") 
-})
+@NamedQueries(value = { @NamedQuery(name = "Review.getAll", query = "SELECT r FROM Review r"),
+		@NamedQuery(name = "Review.getProductReview", query = "SELECT r FROM Review r WHERE r.product.name = :name") })
 
 public class Review extends AbstractEntity {
-<<<<<<< HEAD
-	
-=======
 
 	@Ignore
 	private static final long serialVersionUID = 1L;
 
->>>>>>> refs/remotes/origin/ninja
 	@ManyToOne(optional = false)
 	private User user;
 
@@ -68,10 +62,6 @@ public class Review extends AbstractEntity {
 
 	public Product getProduct() {
 		return product;
-	}
-
-	public User getUser() {
-		return user;
 	}
 
 }
