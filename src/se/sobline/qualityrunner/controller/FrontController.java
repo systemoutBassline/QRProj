@@ -16,7 +16,7 @@ import se.sobline.qualityrunner.model.Product;
 import se.sobline.qualityrunner.model.Review;
 import se.sobline.qualityrunner.model.User;
 
-public final class Controller {
+public final class FrontController {
 
 	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory("QR");
 	private final UserDAO userDAO;
@@ -27,7 +27,7 @@ public final class Controller {
 	 * Borde den här klassen läggas upp i sessionen? För att man skall ha samma
 	 * objekt vilken servlet man än använder?
 	 */
-	public Controller() {
+	public FrontController() {
 		userDAO = new JPAUserDAO(factory);
 		productDAO = new JPAProductDAO(factory);
 		reviewDAO = new JPAReviewDAO(factory);
@@ -40,7 +40,7 @@ public final class Controller {
 	}
 
 	public Product getProduct(String productName) {
-		for (Product product : getAllProducts()) {
+		for (Product product : getProducts()) {
 			if (product.getName().equals(productName)) {
 				return product;
 			}
@@ -48,7 +48,7 @@ public final class Controller {
 		return null;
 	}
 
-	public List<Product> getAllProducts() {
+	public List<Product> getProducts() {
 		return productDAO.getAll();
 	}
 
@@ -88,7 +88,6 @@ public final class Controller {
 	}
 
 	public List<Review> getReviews() {
-		
 		return reviewDAO.getReviews();
 	}
 }

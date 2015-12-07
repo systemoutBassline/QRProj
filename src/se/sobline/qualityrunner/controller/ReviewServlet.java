@@ -31,7 +31,7 @@ public final class ReviewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Controller controller = getController(request);
+		FrontController controller = getController(request);
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 		Product product = (Product) request.getAttribute("product");
@@ -45,7 +45,7 @@ public final class ReviewServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Controller controller = getController(request);
+		FrontController controller = getController(request);
 
 	}
 
@@ -55,13 +55,13 @@ public final class ReviewServlet extends HttpServlet {
 	 * @param request
 	 * @return new controller if not initiated, else return initiated controller
 	 */
-	protected Controller getController(HttpServletRequest request) {
+	protected FrontController getController(HttpServletRequest request) {
 		if (request.getAttribute("controller") == null) {
-			Controller controller = new Controller();
+			FrontController controller = new FrontController();
 			request.setAttribute("controller", controller);
 			return controller;
 		} else {
-			return (Controller) request.getAttribute("controller");
+			return (FrontController) request.getAttribute("controller");
 		}
 	}
 }

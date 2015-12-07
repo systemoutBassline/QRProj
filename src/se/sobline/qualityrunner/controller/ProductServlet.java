@@ -28,14 +28,12 @@ public final class ProductServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Controller controller = getController(request);
+		FrontController controller = getController(request);
 		
-		if (controller.getAllProducts() != null) {
-			request.setAttribute("products", controller.getAllProducts());
+		if (controller.getProducts() != null) {
+			request.setAttribute("products", controller.getProducts());
 			getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
-		} else {
-			getServletContext().getRequestDispatcher("/ops.jsp").forward(request, response);
-		}
+		} else { getServletContext().getRequestDispatcher("/error.jsp").forward(request, response); }
 	}
 
 	/**
@@ -44,22 +42,20 @@ public final class ProductServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Controller controller = getController(request);
+		FrontController controller = getController(request);
 		String productName = request.getParameter("productname");
 
-		if (getCurrentProduct(controller, productName) != null) {
-			Product product =getCurrentProduct(controller, productName);
+		if (currentProduct(controller, productName) != null) {
+			Product product = currentProduct(controller, productName);
 			List<Review> productReviews = product.getReviews();	
 			request.setAttribute("product", product);
 			request.setAttribute("productReviews", productReviews);
 			getServletContext().getRequestDispatcher("/product.jsp").forward(request, response);
-		} else {
-			getServletContext().getRequestDispatcher("/ops.jsp").forward(request, response);				
-		}
+		} else { getServletContext().getRequestDispatcher("/error.jsp").forward(request, response); }
 	}
 
-	private Product getCurrentProduct(Controller controller, String productName) {
-		for (Product product : controller.getAllProducts()) {
+	private Product currentProduct(FrontController controller, String productName) {
+		for (Product product : controller.getProducts()) {
 			if (product.getName().equals(productName)) {
 				return product;
 			}
@@ -73,13 +69,11 @@ public final class ProductServlet extends HttpServlet {
 	 * @param request
 	 * @return new controller if not initiated, else return initiated controller
 	 */
-	protected Controller getController(HttpServletRequest request) {
+	protected FrontController getController(HttpServletRequest request) {
 		if (request.getAttribute("controller") == null) {
-			Controller controller = new Controller();
+			FrontController controller = new FrontController();
 			request.setAttribute("controller", controller);
 			return controller;
-		} else {
-			return (Controller) request.getAttribute("controller");
-		}
+		} else { return (FrontController) request.getAttribute("controller"); }
 	}
 }

@@ -1,13 +1,13 @@
 package se.sobline.qualityrunner;
 
-import se.sobline.qualityrunner.controller.Controller;
+import se.sobline.qualityrunner.controller.FrontController;
 import se.sobline.qualityrunner.model.Product;
 import se.sobline.qualityrunner.model.Review;
 import se.sobline.qualityrunner.model.User;
 
 public class Main {
 
-	private static void addData(Controller controller) {
+	private static void addData(FrontController controller) {
 
 		System.out.println("addData()");
 
@@ -99,7 +99,7 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		Controller controller = new Controller();
+		FrontController controller = new FrontController();
 		addData(controller);
 	}
 
