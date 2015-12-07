@@ -30,7 +30,7 @@ public class LoginUserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Controller controller = new Controller();
+		FrontController controller = new FrontController();
 		RequestDispatcher rd;
 		PrintWriter out;
 		

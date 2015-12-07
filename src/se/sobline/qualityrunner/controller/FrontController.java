@@ -16,14 +16,14 @@ import se.sobline.qualityrunner.model.Product;
 import se.sobline.qualityrunner.model.Review;
 import se.sobline.qualityrunner.model.User;
 
-public final class Controller {
+public final class FrontController {
 
 	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory("QR");
 	private final UserDAO userDAO;
 	private final ProductDAO productDAO;
 	private final ReviewDAO reviewDAO;
 
-	protected Controller() {
+	protected FrontController() {
 		userDAO = new JPAUserDAO(factory);
 		productDAO = new JPAProductDAO(factory);
 		reviewDAO = new JPAReviewDAO(factory);	
