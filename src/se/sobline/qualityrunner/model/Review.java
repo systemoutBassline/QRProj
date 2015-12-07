@@ -9,10 +9,8 @@ import javax.persistence.NamedQuery;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 
 @Entity
-@NamedQueries(value = { 
-		@NamedQuery(name = "Review.getAll", query = "SELECT r FROM Review r"),
-		@NamedQuery(name = "Review.getProductReview", query = "SELECT r FROM Review r WHERE r.product.name = :name") 
-})
+@NamedQueries(value = { @NamedQuery(name = "Review.getAll", query = "SELECT r FROM Review r"),
+		@NamedQuery(name = "Review.getProductReview", query = "SELECT r FROM Review r WHERE r.product.name = :name") })
 
 public class Review extends AbstractEntity {
 
