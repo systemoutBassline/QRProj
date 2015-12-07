@@ -1,6 +1,5 @@
 package se.sobline.qualityrunner.controller;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
@@ -23,19 +22,23 @@ public final class FrontController {
 	private final ProductDAO productDAO;
 	private final ReviewDAO reviewDAO;
 
-	protected FrontController() {
+	/**
+	 * Borde den här klassen läggas upp i sessionen? För att man skall ha samma
+	 * objekt vilken servlet man än använder?
+	 */
+	public FrontController() {
 		userDAO = new JPAUserDAO(factory);
 		productDAO = new JPAProductDAO(factory);
-		reviewDAO = new JPAReviewDAO(factory);	
+		reviewDAO = new JPAReviewDAO(factory);
 	}
-	
+
 	public Product createProduct(Product product) {
 		return productDAO.saveOrUpdate(product);
 	}
-	
+
 	public Product getProduct(String productName) {
-		for(Product product : getProducts()) {
-			if(product.getName().equals(productName)) {
+		for (Product product : getProducts()) {
+			if (product.getName().equals(productName)) {
 				return product;
 			}
 		}
@@ -62,20 +65,21 @@ public final class FrontController {
 	public User createUser(String username, String password) {
 		return userDAO.saveOrUpdate(new User(username, password));
 	}
-	
+
 	public List<User> getUsers() {
 		return userDAO.getAllUsers();
 	}
 
 	public boolean checkLogin(String username, String password) {
-
-		Collection<User> users = userDAO.getAllUsers();
-
-		if (users.contains(username)) {
-			if (users.contains(password)) {
-				return true;
+		
+		
+		for (User user : getUsers()) {
+			if (user.getUsername().equals(username)) {
+				if (user.getPassword().equals(password))
+					return true;
 			}
 		}
+
 		return false;
 	}
 	
@@ -87,5 +91,9 @@ public final class FrontController {
 			user = updateUser(user);
 		}
 		return reviewDAO.saveOrUpdate(review);
+	}
+
+	public List<Review> getReviews() {
+		return reviewDAO.getReviews();
 	}
 }

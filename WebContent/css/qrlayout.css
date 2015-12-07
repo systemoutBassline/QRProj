@@ -1,5 +1,10 @@
 <style>
 
+html {
+	color: black;
+	font-family: "Trebuchet MS";
+}
+
 body {
 	color: black;
 	font-family: "Trebuchet MS";
@@ -157,6 +162,35 @@ li {
 	border: none;
 	border-bottom: solid 2px #c9c9c9;
 	transition: border 0.3s;
+}
+
+/* -- product --*/
+
+.productimg {
+	height: 100px;
+	width: 100px;
+}
+
+.productdiv {
+	border: none;
+	border-bottom: solid 2px #c9c9c9;
+	transition: border 0.3s;
+	margin-bottom: 15px;
+}
+
+.productbutton {
+	color: black;
+	font-family: "Trebuchet MS";
+	background: transparent;
+	border: 0 solid black;
+}
+
+.productbutton:hover {
+	color: gray;
+}
+
+.reviewDivInProduct input[type="button"] {
+	border: 1px solid #000000;
 }
 
 </style>

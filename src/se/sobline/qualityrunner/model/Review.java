@@ -3,29 +3,43 @@ package se.sobline.qualityrunner.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
+
 @Entity
-@NamedQuery(name = "Review.getProductReview", query = "SELECT r FROM Review r WHERE r.product.name = :name")
+@NamedQueries(value = { 
+		@NamedQuery(name = "Review.getAll", query = "SELECT r FROM Review r"),
+		@NamedQuery(name = "Review.getProductReview", query = "SELECT r FROM Review r WHERE r.product.name = :name") 
+})
+
 public class Review extends AbstractEntity {
+<<<<<<< HEAD
 	
+=======
+
+	@Ignore
+	private static final long serialVersionUID = 1L;
+
+>>>>>>> refs/remotes/origin/ninja
 	@ManyToOne(optional = false)
 	private User user;
-	
+
 	@Column(nullable = false)
 	private String text;
-	
+
 	@Column(nullable = false)
 	private int grade;
-	
+
 	@Column(nullable = false)
 	private String title;
-	
+
 	@ManyToOne(optional = false)
 	private Product product;
-	
+
 	protected Review() {
-		
+
 	}
 
 	public Review(User user, String text, int grade, String title, Product product) {
@@ -35,19 +49,23 @@ public class Review extends AbstractEntity {
 		this.title = title;
 		this.product = product;
 	}
-	
+
+	public User getUser() {
+		return user;
+	}
+
 	public String getText() {
 		return text;
 	}
-	
+
 	public int getGrade() {
 		return grade;
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
-	
+
 	public Product getProduct() {
 		return product;
 	}

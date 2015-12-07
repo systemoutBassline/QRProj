@@ -15,13 +15,13 @@
 		<div class="navcontainer">
 			<div class="navbar">
 				<ul>
-					<li><a href="ProductServlet" target="main">Products</a></li>
-					<li><a href="reviews.jsp" target="main">Reviews</a></li>
+					<li><a href="./ProductServlet" target="main">Products</a></li>
+					<li><a href="./ReviewServlet" target="main">Reviews</a></li>
 				</ul>
 			</div>
 
 			<div class="main" width="600">
-				<iframe class="mainbox1" src="products.jsp" name="main" width="600"
+				<iframe class="mainbox1" src="reviews.jsp" name="main" width="600"
 					height="550"></iframe>
 			</div>
 		</div>
