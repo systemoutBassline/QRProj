@@ -34,6 +34,9 @@ public class User extends AbstractEntity implements Serializable {
 	@Column(nullable = false)
 	private String password;
 	
+	@Column(nullable = false)
+	private String salt;
+	
 	@OneToMany
 	private List<Review> reviews;
 
@@ -66,5 +69,13 @@ public class User extends AbstractEntity implements Serializable {
 	
 	public List<Review> getReviews() {
 		return reviews;
+	}
+	
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+	
+	public String getSalt() {
+		return salt;
 	}
 }

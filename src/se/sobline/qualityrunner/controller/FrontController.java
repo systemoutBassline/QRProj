@@ -1,6 +1,10 @@
 package se.sobline.qualityrunner.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Random;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -62,10 +66,14 @@ public final class FrontController {
 		}
 		return null;
 	}
-
+	
 	public User createUser(String username, String password) {
-		return userDAO.saveOrUpdate(new User(username, password));
+		String salt = makeSalt();
+		User user = new User(username, encryptThis(password, salt));
+		user.setSalt(salt);
+		return userDAO.saveOrUpdate(user);
 	}
+
 
 	public List<User> getUsers() {
 		return userDAO.getAllUsers();
@@ -75,7 +83,7 @@ public final class FrontController {
 
 		for (User user : getUsers()) {
 			if (user.getUsername().equals(username)) {
-				if (user.getPassword().equals(password)) {
+				if (user.getPassword().equals(encryptThis(password, user.getSalt()))) {
 					return true;
 				}
 			}
@@ -96,5 +104,38 @@ public final class FrontController {
 
 	public List<Review> getReviews() {
 		return reviewDAO.getReviews();
+	}
+
+	private static String encryptThis(String password, String salt) {
+		StringBuffer sb = new StringBuffer();
+		try {
+
+			String saltedpassword = password + salt;
+			byte[] bytesOfText;
+			bytesOfText = saltedpassword.getBytes("UTF-8");
+
+			MessageDigest md;
+			md = MessageDigest.getInstance("SHA-256");
+			byte[] theDigest = md.digest(bytesOfText);
+
+			for (int i = 0; i < theDigest.length; i++) {
+				sb.append(Integer.toHexString((theDigest[i] & 0xFF) | 0x100).substring(1, 3));
+			}
+		} catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
+			e.printStackTrace();
+			System.out.println("Failed to encrypt ggwp");
+		}
+		return sb.toString();
+	}
+
+	private String makeSalt() {
+		char[] chars = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ".toCharArray();
+		StringBuilder sb = new StringBuilder();
+		Random random = new Random();
+		for (int i = 0; i < 10; i++) {
+			char c = chars[random.nextInt(chars.length)];
+			sb.append(c);
+		}
+		return sb.toString();
 	}
 }
