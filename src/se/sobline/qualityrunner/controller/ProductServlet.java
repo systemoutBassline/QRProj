@@ -50,6 +50,8 @@ public final class ProductServlet extends HttpServlet {
 		if (currentProduct(controller, productName, session) != null) {
 			Product product = currentProduct(controller, productName, session);
 			List<Review> productReviews = product.getReviews();
+			// sorting stuff here
+			productReviews = controller.sortReviews(productReviews);
 			session.setAttribute("productReviews", productReviews);
 			getServletContext().getRequestDispatcher("/product.jsp").forward(request, response);
 		} else {

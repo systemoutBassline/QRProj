@@ -52,7 +52,7 @@ public class Review extends AbstractEntity {
 		return text;
 	}
 
-	public int getGrade() {
+	public Integer getGrade() {
 		return grade;
 	}
 

@@ -1,5 +1,6 @@
 package se.sobline.qualityrunner.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
@@ -85,22 +86,40 @@ public final class FrontController {
 	}
 
 	public Review createReview(Review review) {
+		return reviewDAO.saveOrUpdate(mapAndSortReview(review));
+	}
+	
+	// sorting stuff here
+	public Review mapAndSortReview(Review review) {
 		User user = userExists(review.getUser().getUsername());
 		Product product = getProduct(review.getProduct().getName());
+		// sorting stuff here
+		List<Review> sortedReviews;
 
 		if (!user.getReviews().contains(review)) {
 			user.add(review);
+			// sorting stuff here
+			sortedReviews = sortReviews(user.getReviews());
+			user.setReviews(sortedReviews);
 			user = updateUser(user);
 		}
-		
+
 		if (!product.getReviews().contains(review)) {
-			product.add(review);;
+			product.add(review);
+			// sorting stuff here
+			sortedReviews = sortReviews(product.getReviews());
+			product.setReviews(sortedReviews);
 			product = createProduct(product);
 		}
-		
-		return reviewDAO.saveOrUpdate(review);
+		return review;
 	}
 
+	// sorting stuff here
+	public List<Review> sortReviews(List<Review> reviews) {
+		reviews.sort((review1, review2) -> review1.getGrade().compareTo(review2.getGrade()));
+		return reviews;
+	}
+	
 	public List<Review> getReviews() {
 		return reviewDAO.getReviews();
 	}
