@@ -24,44 +24,49 @@ public class Product extends AbstractEntity implements Serializable {
 
 	@Column(nullable = false)
 	private String name;
-	
+
 	@Column(nullable = false)
 	private int grade;
-	
+
 	@Column
 	private String imgURL;
-	
+
 	@OneToMany
 	private List<Review> reviews;
-	
+
 	protected Product() {
 		super();
 	}
-	
+
 	public Product(String name, int grade, String imgURL) {
 		this.name = name;
 		this.grade = grade;
 		this.imgURL = imgURL;
 		this.reviews = new ArrayList<>();
 	}
-	
-	public void add(Review review) {
+
+	public Review add(Review review) {
 		reviews.add(review);
+		return review;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public int getGrade() {
 		return grade;
 	}
-	
+
 	public String getImgURL() {
 		return imgURL;
-	}	
+	}
 
 	public List<Review> getReviews() {
 		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
 	}
 }
