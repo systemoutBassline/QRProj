@@ -42,16 +42,16 @@ public final class ProductServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		FrontController controller = getController(request);
+		FrontController controller = new FrontController();
 		HttpSession session = request.getSession();
 		
 		String productName = request.getParameter("productname");
 
 		if (currentProduct(controller, productName, session) != null) {
 			Product product = currentProduct(controller, productName, session);
-			List<Review> productReviews = product.getReviews();
+//			List<Review> productReviews = product.getReviews();
 			// sorting stuff here
-			productReviews = controller.sortReviews(productReviews);
+			List<Review> productReviews = controller.sortReviews(product.getReviews());
 			session.setAttribute("productReviews", productReviews);
 			getServletContext().getRequestDispatcher("/product.jsp").forward(request, response);
 		} else {
