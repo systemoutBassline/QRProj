@@ -45,15 +45,15 @@ public final class ReviewServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Controller controller = getController(request);
+		Controller controller = new Controller();
 
 		HttpSession session = request.getSession();
 
-		String title = request.getParameter("title");
-		String reviewText = request.getParameter("reviewText");
-		String gradeString = request.getParameter("grade");
+		String title = controller.cleanInput(request.getParameter("title"));
+		String reviewText = controller.cleanInput(request.getParameter("reviewText"));
+		String gradeString = controller.cleanInput(request.getParameter("grade"));
 		Double grade = Double.parseDouble(gradeString);
-
+		
 		if ((controller.userExists((String) session.getAttribute("username")) != null)
 				&& (session.getAttribute("currentProduct") != null)) {
 			Review review = new Review(controller.userExists((String) session.getAttribute("username")), 
@@ -66,20 +66,5 @@ public final class ReviewServlet extends HttpServlet {
 			getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
 		}
 	}
-
-	/***
-	 * create or get controller
-	 * 
-	 * @param request
-	 * @return new controller if not initiated, else return initiated controller
-	 */
-	protected Controller getController(HttpServletRequest request) {
-		if (request.getAttribute("controller") == null) {
-			Controller controller = new Controller();
-			request.setAttribute("controller", controller);
-			return controller;
-		} else {
-			return (Controller) request.getAttribute("controller");
-		}
-	}
+	
 }

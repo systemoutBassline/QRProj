@@ -23,7 +23,7 @@
 			</div>
 
 			<div class="main" width="600">
-				<iframe class="mainbox1" src="products.jsp" name="main" width="600"
+				<iframe class="mainbox1" src="./ProductServlet" name="main" width="600"
 					height="550"></iframe>
 			</div>
 			<div class="navbar2">

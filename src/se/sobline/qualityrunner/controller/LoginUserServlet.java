@@ -57,8 +57,8 @@ public class LoginUserServlet extends HttpServlet {
 		
 		session.setMaxInactiveInterval(10080 * 60);
 		
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String username = controller.cleanInput(request.getParameter("username"));
+		String password = controller.cleanInput(request.getParameter("password"));
 		
 		getServletContext();
 		

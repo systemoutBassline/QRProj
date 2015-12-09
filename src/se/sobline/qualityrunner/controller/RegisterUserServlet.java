@@ -37,10 +37,10 @@ public final class RegisterUserServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		Controller controller = new Controller();
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String password2 = request.getParameter("password2");
-
+		String username = controller.cleanInput(request.getParameter("username"));
+		String password = controller.cleanInput(request.getParameter("password"));
+		String password2 = controller.cleanInput(request.getParameter("password2"));
+		
 		RequestDispatcher rd;
 		PrintWriter out;
 

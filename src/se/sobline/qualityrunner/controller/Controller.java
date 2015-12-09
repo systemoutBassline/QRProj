@@ -24,6 +24,7 @@ import se.sobline.qualityrunner.model.User;
 
 /***
  * Class that ties the database and the view together
+ * 
  * @author Charlotte & Joel
  * @since 09.12.2015
  * @version 1.0
@@ -75,14 +76,13 @@ public final class Controller {
 		}
 		return null;
 	}
-	
+
 	public User createUser(String username, String password) {
 		String salt = makeSalt();
 		User user = new User(username, encryptThis(password, salt));
 		user.setSalt(salt);
 		return userDAO.saveOrUpdate(user);
 	}
-
 
 	public List<User> getUsers() {
 		return userDAO.getAllUsers();
@@ -104,8 +104,7 @@ public final class Controller {
 	public Review createReview(Review review, double grade) {
 		return reviewDAO.saveOrUpdate(mapReview(review, grade));
 	}
-	
-	// sorting stuff here
+
 	public Review mapReview(Review review, double grade) {
 		User user = userExists(review.getUser().getUsername());
 		Product product = getProduct(review.getProduct().getName());
@@ -160,9 +159,9 @@ public final class Controller {
 		}
 		return sb.toString();
 	}
-	
-	 public String cleanInput(String productInput) {
-		  productInput = Jsoup.clean(productInput, Whitelist.none().removeAttributes(":all", "class"));
-		  return productInput;
-		 }
+
+	public String cleanInput(String productInput) {
+		productInput = Jsoup.clean(productInput, Whitelist.none().removeAttributes(":all", "class"));
+		return productInput;
+	}
 }

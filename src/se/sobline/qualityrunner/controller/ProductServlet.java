@@ -33,7 +33,7 @@ public final class ProductServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Controller controller = getController(request);
+		Controller controller = new Controller();
 		HttpSession session = request.getSession();
 
 		if (controller.getProducts() != null) {
@@ -50,8 +50,8 @@ public final class ProductServlet extends HttpServlet {
 		Controller controller = new Controller();
 		HttpSession session = request.getSession();
 
-		String productName = request.getParameter("productname");
-
+		String productName = controller.cleanInput(request.getParameter("productname"));
+		
 		if (currentProduct(controller, productName, session) != null) {
 			Product product = currentProduct(controller, productName, session);
 			List<Review> productReviews = product.getReviews();
@@ -71,16 +71,5 @@ public final class ProductServlet extends HttpServlet {
 			}
 		}
 		return null;
-	}
-
-	private Controller getController(HttpServletRequest request) {
-
-		if (request.getAttribute("controller") == null) {
-			Controller controller = new Controller();
-			request.setAttribute("controller", controller);
-			return controller;
-		} else {
-			return (Controller) request.getAttribute("controller");
-		}
 	}
 }
