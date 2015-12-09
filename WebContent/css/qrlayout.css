@@ -129,6 +129,15 @@ textarea, input {
 
 .navbar {
 	float: left;
+	
+}
+
+.navbar2 {
+	float: right;
+	color: black;
+	font-size: 14px;
+	text-shadow: 2px 2px #b5cbc5;
+	font-family: "Trebuchet MS";
 }
 
 .navbar:li {

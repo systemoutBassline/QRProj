@@ -21,7 +21,12 @@ import se.sobline.qualityrunner.dao.jpa.JPAUserDAO;
 import se.sobline.qualityrunner.model.Product;
 import se.sobline.qualityrunner.model.Review;
 import se.sobline.qualityrunner.model.User;
-
+/***
+ * Class that ties the database and the view together
+ * @author Charlotte & Joel
+ * @since 09.12.2015
+ * @version 1.0
+ */
 public final class Controller {
 
 	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory("QR");

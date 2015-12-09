@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class LoginUserServlet
+/***
+ * Servlet for login function
+ * @author Charlotte & Joel
+ * @since 09.12.2015
+ * @version 1.0
  */
 @WebServlet("/LoginUserServlet")
 public class LoginUserServlet extends HttpServlet {

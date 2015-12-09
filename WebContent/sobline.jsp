@@ -6,30 +6,22 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	<!-- @Author: Charlotte & Joel -->
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="css/qrlayout.css" rel="stylesheet" type="text/css" />
-	<title>QualityRunner</title>
+	<title>system.out.Bassline</title>
 </h:head>
 <h:body>
-	<center>
-		<div class="navcontainer">
-			<div class="navbar">
-				<ul>
-					<li><a href="./ProductServlet" target="main">Products</a></li>
-					<li><a href="sobline.jsp" target="main">system.out.Bassline</a></li>
-					<li><a href="./LogoutUserServlet">Logout</a></li>
-				</ul>
-			</div>
+<center><h1>system.out.Bassline</h1></center>
+<br/>
+Our main goal is to unite people with the power of music.
+<br/>For starters we'll give everyone the opportunity to add
+<br/>whatever the user want and give it a review for registered users to see. 
+<br/>The user can give a grade and/or a review on the quality of the whatever.
+<br/>
+<br/>
+Happy to be at your service!
 
-			<div class="main" width="600">
-				<iframe class="mainbox1" src="products.jsp" name="main" width="600"
-					height="550"></iframe>
-			</div>
-			<div class="navbar2">
-			User: ${username}
-			</div>
-		</div>
-	</center>
 </h:body>
 </html>

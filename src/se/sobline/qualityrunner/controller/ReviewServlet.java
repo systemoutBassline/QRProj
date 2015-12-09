@@ -14,6 +14,9 @@ import se.sobline.qualityrunner.model.Review;
 
 /**
  * Servlet implementation class ReviewServlet
+ * @author Charlotte & Joel
+ * @since 09.12.2015
+ * @version 1.0
  */
 @WebServlet("/ReviewServlet")
 public final class ReviewServlet extends HttpServlet {

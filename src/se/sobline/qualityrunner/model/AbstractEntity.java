@@ -10,8 +10,10 @@ import javax.persistence.MappedSuperclass;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 
 /**
+ * @author Charlotte
  * Entity implementation class for Entity: AbstractEntity
- *
+ * @since 09.12.2015
+ * @version 1.0
  */
 @MappedSuperclass
 

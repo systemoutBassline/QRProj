@@ -12,8 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class RegisterUserServlet
+/***
+ * Servlet for registration
+ * @author Charlotte & Joel
+ * @since 09.12.2015
+ * @version 1.0
  */
 @WebServlet("/RegisterUserServlet")
 public final class RegisterUserServlet extends HttpServlet {

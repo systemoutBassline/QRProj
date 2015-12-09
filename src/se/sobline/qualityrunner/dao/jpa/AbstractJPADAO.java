@@ -10,6 +10,14 @@ import javax.persistence.TypedQuery;
 import se.sobline.qualityrunner.dao.CrudDAO;
 import se.sobline.qualityrunner.model.AbstractEntity;
 
+/***
+ * 
+ * @author Charlotte & Joel
+ * @since 09.12.2015
+ * @version 1.0
+ * @param <E>
+ */
+
 public abstract class AbstractJPADAO<E extends AbstractEntity> implements CrudDAO<E> {
 	
 	private final EntityManagerFactory factory;

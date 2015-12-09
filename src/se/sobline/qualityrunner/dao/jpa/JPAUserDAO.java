@@ -9,6 +9,13 @@ import javax.persistence.EntityManagerFactory;
 import se.sobline.qualityrunner.dao.UserDAO;
 import se.sobline.qualityrunner.model.User;
 
+/***
+ * 
+ * @author Charlotte & Joel
+ * @since 09.12.2015
+ * @version 1.0
+ */
+
 public final class JPAUserDAO extends AbstractJPADAO<User> implements UserDAO {
 
 
