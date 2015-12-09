@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import jdk.nashorn.internal.ir.annotations.Ignore;
 
@@ -18,6 +19,7 @@ import jdk.nashorn.internal.ir.annotations.Ignore;
  * @version 1.0
  */
 @Entity
+@Table(name = "PRODUCTS", schema = "QR")
 @NamedQuery(name = "Product.getAll", query = "SELECT p FROM Product p")
 public class Product extends AbstractEntity implements Serializable {
 

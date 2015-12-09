@@ -41,7 +41,6 @@ public final class Controller {
 	 * objekt vilken servlet man än använder?
 	 */
 	public Controller() {
-
 		userDAO = new JPAUserDAO(factory);
 		productDAO = new JPAProductDAO(factory);
 		reviewDAO = new JPAReviewDAO(factory);
@@ -117,7 +116,6 @@ public final class Controller {
 		if (!product.getReviews().contains(review)) {
 			product.add(review);
 			product.setGrade(grade);
-			System.out.println("fkn grade this shit.." + grade);
 			product = createProduct(product);
 		}
 		return review;
