@@ -2,7 +2,6 @@ package se.sobline.qualityrunner.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -32,14 +31,10 @@ public class User extends AbstractEntity implements Serializable {
 
 	@Column(nullable = false)
 	private String password;
-<<<<<<< HEAD
 
-=======
-	
 	@Column(nullable = false)
 	private String salt;
-	
->>>>>>> refs/remotes/origin/master
+
 	@OneToMany
 	private List<Review> reviews;
 
@@ -73,18 +68,16 @@ public class User extends AbstractEntity implements Serializable {
 	public List<Review> getReviews() {
 		return reviews;
 	}
-<<<<<<< HEAD
 
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
-=======
-	
+	}
+
 	public void setSalt(String salt) {
 		this.salt = salt;
 	}
-	
+
 	public String getSalt() {
 		return salt;
->>>>>>> refs/remotes/origin/master
 	}
 }
