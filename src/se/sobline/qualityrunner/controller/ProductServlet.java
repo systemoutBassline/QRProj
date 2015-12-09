@@ -28,7 +28,7 @@ public final class ProductServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		FrontController controller = getController(request);
+		Controller controller = getController(request);
 
 		if (controller.getProducts() != null) {
 			request.setAttribute("products", controller.getProducts());
@@ -40,7 +40,7 @@ public final class ProductServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		FrontController controller = getController(request);
+		Controller controller = getController(request);
 
 		String productName = request.getParameter("productname");
 
@@ -55,7 +55,7 @@ public final class ProductServlet extends HttpServlet {
 		}
 	}
 
-	private Product currentProduct(FrontController controller, String productName) {
+	private Product currentProduct(Controller controller, String productName) {
 		for (Product product : controller.getProducts()) {
 			if (product.getName().equals(productName)) {
 				return product;
@@ -64,14 +64,14 @@ public final class ProductServlet extends HttpServlet {
 		return null;
 	}
 
-	private FrontController getController(HttpServletRequest request) {
+	private Controller getController(HttpServletRequest request) {
 
 		if (request.getAttribute("controller") == null) {
-			FrontController controller = new FrontController();
+			Controller controller = new Controller();
 			request.setAttribute("controller", controller);
 			return controller;
 		} else {
-			return (FrontController) request.getAttribute("controller");
+			return (Controller) request.getAttribute("controller");
 		}
 	}
 }

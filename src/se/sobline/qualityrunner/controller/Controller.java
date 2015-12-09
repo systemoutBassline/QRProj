@@ -9,6 +9,9 @@ import java.util.Random;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
+
 import se.sobline.qualityrunner.dao.ProductDAO;
 import se.sobline.qualityrunner.dao.ReviewDAO;
 import se.sobline.qualityrunner.dao.UserDAO;
@@ -19,7 +22,7 @@ import se.sobline.qualityrunner.model.Product;
 import se.sobline.qualityrunner.model.Review;
 import se.sobline.qualityrunner.model.User;
 
-public final class FrontController {
+public final class Controller {
 
 	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory("QR");
 	private final UserDAO userDAO;
@@ -30,7 +33,7 @@ public final class FrontController {
 	 * Borde den här klassen läggas upp i sessionen? För att man skall ha samma
 	 * objekt vilken servlet man än använder?
 	 */
-	public FrontController() {
+	public Controller() {
 
 		userDAO = new JPAUserDAO(factory);
 		productDAO = new JPAProductDAO(factory);
@@ -138,4 +141,9 @@ public final class FrontController {
 		}
 		return sb.toString();
 	}
+	
+	 public String cleanInput(String productInput) {
+		  productInput = Jsoup.clean(productInput, Whitelist.none().removeAttributes(":all", "class"));
+		  return productInput;
+		 }
 }

@@ -51,9 +51,9 @@ if(null != session) {
 	<tr>
 	<td>Password: </td><td><input type="password" name="password" placeholder="Password" /></td>
 	</tr>
-	<!--<tr>
+	<tr>
 	<td>Password: </td><td><input type="password" name="password2" placeholder="Password" /></td>
-	</tr>-->
+	</tr>
 		</table>
 		<center><button type="submit" value="Submit">SUBMIT</button>
 		<button type="reset">RESET</button></center>

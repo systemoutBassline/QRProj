@@ -46,7 +46,7 @@ public class LoginUserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		FrontController controller = new FrontController();
+		Controller controller = new Controller();
 		HttpSession session = request.getSession();
 
 		RequestDispatcher rd;
