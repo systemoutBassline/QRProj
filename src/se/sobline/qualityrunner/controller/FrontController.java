@@ -1,12 +1,8 @@
 package se.sobline.qualityrunner.controller;
 
-<<<<<<< HEAD
-import java.util.ArrayList;
-=======
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
->>>>>>> refs/remotes/origin/master
 import java.util.List;
 import java.util.Random;
 
