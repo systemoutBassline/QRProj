@@ -52,14 +52,14 @@ public final class ReviewServlet extends HttpServlet {
 		String title = request.getParameter("title");
 		String reviewText = request.getParameter("reviewText");
 		String gradeString = request.getParameter("grade");
-		int grade = Integer.parseInt(gradeString);
+		Double grade = Double.parseDouble(gradeString);
 
 		if ((controller.userExists((String) session.getAttribute("username")) != null)
 				&& (session.getAttribute("currentProduct") != null)) {
 			Review review = new Review(controller.userExists((String) session.getAttribute("username")), 
-										reviewText, grade, title,
+										reviewText, title,
 										(Product) session.getAttribute("currentProduct"));
-			controller.createReview(review);
+			controller.createReview(review, grade);
 
 			getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
 		} else {

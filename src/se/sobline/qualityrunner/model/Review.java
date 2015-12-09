@@ -31,9 +31,6 @@ public class Review extends AbstractEntity {
 	private String text;
 
 	@Column(nullable = false)
-	private int grade;
-
-	@Column(nullable = false)
 	private String title;
 
 	@ManyToOne(optional = false)
@@ -43,10 +40,9 @@ public class Review extends AbstractEntity {
 
 	}
 
-	public Review(User user, String text, int grade, String title, Product product) {
+	public Review(User user, String text, String title, Product product) {
 		this.user = user;
 		this.text = text;
-		this.grade = grade;
 		this.title = title;
 		this.product = product;
 	}
@@ -57,10 +53,6 @@ public class Review extends AbstractEntity {
 
 	public String getText() {
 		return text;
-	}
-
-	public Integer getGrade() {
-		return grade;
 	}
 
 	public String getTitle() {
