@@ -1,15 +1,16 @@
 package se.sobline.qualityrunner.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import se.sobline.qualityrunner.model.Product;
+import se.sobline.qualityrunner.model.Review;
 
 /**
  * Servlet implementation class ReviewServlet
@@ -31,11 +32,6 @@ public final class ReviewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Controller controller = getController(request);
-		PrintWriter out = response.getWriter();
-		response.setContentType("text/html");
-		Product product = (Product) request.getAttribute("product");
-		out.print("<html><body>" + product.getName() + "</body></html>");
 		
 	}
 
@@ -45,8 +41,27 @@ public final class ReviewServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		Controller controller = getController(request);
 
+		HttpSession session = request.getSession();
+
+		String title = request.getParameter("title");
+		String reviewText = request.getParameter("reviewText");
+		String gradeString = request.getParameter("grade");
+		int grade = Integer.parseInt(gradeString);
+
+		if ((controller.userExists((String) session.getAttribute("username")) != null)
+				&& (session.getAttribute("currentProduct") != null)) {
+			Review review = new Review(controller.userExists((String) session.getAttribute("username")), 
+										reviewText, grade, title,
+										(Product) session.getAttribute("currentProduct"));
+			controller.createReview(review);
+
+			getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
+		} else {
+			getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
+		}
 	}
 
 	/***
