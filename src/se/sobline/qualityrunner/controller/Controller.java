@@ -9,6 +9,9 @@ import java.util.Random;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
+
 import se.sobline.qualityrunner.dao.ProductDAO;
 import se.sobline.qualityrunner.dao.ReviewDAO;
 import se.sobline.qualityrunner.dao.UserDAO;
@@ -19,6 +22,12 @@ import se.sobline.qualityrunner.model.Product;
 import se.sobline.qualityrunner.model.Review;
 import se.sobline.qualityrunner.model.User;
 
+/***
+ * Class that ties the database and the view together
+ * @author Charlotte & Joel
+ * @since 09.12.2015
+ * @version 1.0
+ */
 public final class Controller {
 
 	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory("QR");
@@ -151,4 +160,9 @@ public final class Controller {
 		}
 		return sb.toString();
 	}
+	
+	 public String cleanInput(String productInput) {
+		  productInput = Jsoup.clean(productInput, Whitelist.none().removeAttributes(":all", "class"));
+		  return productInput;
+		 }
 }

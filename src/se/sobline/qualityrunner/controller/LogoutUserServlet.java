@@ -8,8 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class LogoutUserServlet
+/***
+ * Class that removes the authentication access from the
+ * user and redirects to the index page
+ * @author Charlotte & Joel
+ * @since 09.12.2015
+ * @version 1.0
  */
 @WebServlet("/LogoutUserServlet")
 public class LogoutUserServlet extends HttpServlet {

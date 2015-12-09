@@ -14,6 +14,9 @@ import se.sobline.qualityrunner.model.Review;
 
 /**
  * Servlet implementation class ReviewServlet
+ * @author Charlotte & Joel
+ * @since 09.12.2015
+ * @version 1.0
  */
 @WebServlet("/ReviewServlet")
 public final class ReviewServlet extends HttpServlet {
@@ -32,7 +35,7 @@ public final class ReviewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 	}
 
 	/**
@@ -41,7 +44,9 @@ public final class ReviewServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		Controller controller = getController(request);
+
 		HttpSession session = request.getSession();
 
 		String title = request.getParameter("title");

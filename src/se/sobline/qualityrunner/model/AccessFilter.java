@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * @author Charlotte
+ * @author Charlotte & Joel
  * Servlet for making pages secure with filter
+ * @since 09.12.2015
+ * @version 1.0
  */
 @WebFilter("/AccessFilter")
 public class AccessFilter implements Filter {

@@ -12,8 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class RegisterUserServlet
+/***
+ * Servlet for registration
+ * @author Charlotte & Joel
+ * @since 09.12.2015
+ * @version 1.0
  */
 @WebServlet("/RegisterUserServlet")
 public final class RegisterUserServlet extends HttpServlet {
@@ -32,29 +35,45 @@ public final class RegisterUserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		Controller controller = new Controller();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String password2 = request.getParameter("password2");
 
 		RequestDispatcher rd;
 		PrintWriter out;
 
 		getServletContext();
-
+		
 		if (controller.userExists(username) != null) {
-			
+
 			rd = getServletContext().getRequestDispatcher("/index.jsp");
 			out = response.getWriter();
 
 			out.println("<h1><center><font color=red family=Trebuchent ms>User already exists!</font></center></h1>");
 
-			rd.include(request, response);
-
 		} else {
-			System.out.println("eh?");
-			controller.createUser(username, password);
 
-			getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+			rd = getServletContext().getRequestDispatcher("/index.jsp");
+			out = response.getWriter();
+
+			if (password.equals(password2)) {
+				controller.createUser(username, controller.cleanInput(password));
+
+				out.println(
+						"<h1><center><font color=red family=Trebuchent ms>Registration complete!</font></center></h1>");
+
+				rd.include(request, response);
+			} else {
+				rd = getServletContext().getRequestDispatcher("/index.jsp");
+				out = response.getWriter();
+				out.println("<h1><center><font color=red family=Trebuchent ms>Passwords ain't matchin'!</font></center></h1>");
+
+				rd.include(request, response);
+			}
+			// getServletContext().getRequestDispatcher("/index.jsp").forward(request,
+			// response);
 		}
 	}
 }

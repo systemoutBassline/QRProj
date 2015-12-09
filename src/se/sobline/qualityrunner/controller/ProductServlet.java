@@ -15,6 +15,9 @@ import se.sobline.qualityrunner.model.Review;
 
 /**
  * Servlet implementation class ProductServlet
+ * @author Charlotte & Joel
+ * @since 09.12.2015
+ * @version 1.0
  */
 @WebServlet("/ProductServlet")
 public final class ProductServlet extends HttpServlet {
@@ -29,6 +32,7 @@ public final class ProductServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		Controller controller = getController(request);
 		HttpSession session = request.getSession();
 
@@ -42,9 +46,10 @@ public final class ProductServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		Controller controller = new Controller();
 		HttpSession session = request.getSession();
-		
+
 		String productName = request.getParameter("productname");
 
 		if (currentProduct(controller, productName, session) != null) {
@@ -58,6 +63,7 @@ public final class ProductServlet extends HttpServlet {
 	}
 
 	private Product currentProduct(Controller controller, String productName, HttpSession session) {
+
 		for (Product product : controller.getProducts()) {
 			if (product.getName().equals(productName)) {
 				session.setAttribute("currentProduct", product);

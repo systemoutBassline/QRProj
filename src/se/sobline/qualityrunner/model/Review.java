@@ -8,6 +8,13 @@ import javax.persistence.NamedQuery;
 
 import jdk.nashorn.internal.ir.annotations.Ignore;
 
+/***
+ * @author Charlotte & Joel
+ * Entity implementation class for Entity: Review
+ * @since 09.12.2015
+ * @version 1.0
+ */
+
 @Entity
 @NamedQueries(value = { @NamedQuery(name = "Review.getAll", query = "SELECT r FROM Review r"),
 		@NamedQuery(name = "Review.getProductReview", query = "SELECT r FROM Review r WHERE r.product.name = :name") })

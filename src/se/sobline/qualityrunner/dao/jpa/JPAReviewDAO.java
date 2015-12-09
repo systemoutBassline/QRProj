@@ -9,6 +9,13 @@ import javax.persistence.EntityManagerFactory;
 import se.sobline.qualityrunner.dao.ReviewDAO;
 import se.sobline.qualityrunner.model.Review;
 
+/***
+ * 
+ * @author Charlotte & Joel
+ * @since 09.12.2015
+ * @version 1.0
+ */
+
 public final class JPAReviewDAO extends AbstractJPADAO<Review> implements ReviewDAO {
 
 	public JPAReviewDAO(EntityManagerFactory factory) {

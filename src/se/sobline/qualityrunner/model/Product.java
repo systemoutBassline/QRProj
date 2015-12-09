@@ -11,9 +11,11 @@ import javax.persistence.OneToMany;
 
 import jdk.nashorn.internal.ir.annotations.Ignore;
 
-/**
+/*** 
+ * @author Charlotte & Joel
  * Entity implementation class for Entity: Product
- *
+ * @since 09.12.2015
+ * @version 1.0
  */
 @Entity
 @NamedQuery(name = "Product.getAll", query = "SELECT p FROM Product p")
