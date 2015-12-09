@@ -19,7 +19,7 @@ import se.sobline.qualityrunner.model.Product;
 import se.sobline.qualityrunner.model.Review;
 import se.sobline.qualityrunner.model.User;
 
-public final class FrontController {
+public final class Controller {
 
 	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory("QR");
 	private final UserDAO userDAO;
@@ -30,7 +30,7 @@ public final class FrontController {
 	 * Borde den här klassen läggas upp i sessionen? För att man skall ha samma
 	 * objekt vilken servlet man än använder?
 	 */
-	public FrontController() {
+	public Controller() {
 
 		userDAO = new JPAUserDAO(factory);
 		productDAO = new JPAProductDAO(factory);
@@ -92,41 +92,29 @@ public final class FrontController {
 		return false;
 	}
 
-	public Review createReview(Review review) {
-		return reviewDAO.saveOrUpdate(mapAndSortReview(review));
+	public Review createReview(Review review, double grade) {
+		return reviewDAO.saveOrUpdate(mapReview(review, grade));
 	}
 	
 	// sorting stuff here
-	public Review mapAndSortReview(Review review) {
+	public Review mapReview(Review review, double grade) {
 		User user = userExists(review.getUser().getUsername());
 		Product product = getProduct(review.getProduct().getName());
-		// sorting stuff here
-		List<Review> sortedReviews;
 
 		if (!user.getReviews().contains(review)) {
 			user.add(review);
-			// sorting stuff here
-			sortedReviews = sortReviews(user.getReviews());
-			user.setReviews(sortedReviews);
 			user = updateUser(user);
 		}
 
 		if (!product.getReviews().contains(review)) {
 			product.add(review);
-			// sorting stuff here
-			sortedReviews = sortReviews(product.getReviews());
-			product.setReviews(sortedReviews);
+			product.setGrade(grade);
+			System.out.println("fkn grade this shit.." + grade);
 			product = createProduct(product);
 		}
 		return review;
 	}
 
-	// sorting stuff here
-	public List<Review> sortReviews(List<Review> reviews) {
-		reviews.sort((review1, review2) -> review1.getGrade().compareTo(review2.getGrade()));
-		return reviews;
-	}
-	
 	public List<Review> getReviews() {
 		return reviewDAO.getReviews();
 	}

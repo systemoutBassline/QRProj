@@ -32,7 +32,7 @@ public final class RegisterUserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		FrontController controller = new FrontController();
+		Controller controller = new Controller();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 

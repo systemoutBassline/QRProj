@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import se.sobline.qualityrunner.model.Product;
 import se.sobline.qualityrunner.model.Review;
-import se.sobline.qualityrunner.model.User;
 
 /**
  * Servlet implementation class ReviewServlet
@@ -42,20 +41,20 @@ public final class ReviewServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		FrontController controller = getController(request);
+		Controller controller = getController(request);
 		HttpSession session = request.getSession();
 
 		String title = request.getParameter("title");
 		String reviewText = request.getParameter("reviewText");
 		String gradeString = request.getParameter("grade");
-		int grade = Integer.parseInt(gradeString);
+		Double grade = Double.parseDouble(gradeString);
 
 		if ((controller.userExists((String) session.getAttribute("username")) != null)
 				&& (session.getAttribute("currentProduct") != null)) {
 			Review review = new Review(controller.userExists((String) session.getAttribute("username")), 
-										reviewText, grade, title,
+										reviewText, title,
 										(Product) session.getAttribute("currentProduct"));
-			controller.createReview(review);
+			controller.createReview(review, grade);
 
 			getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
 		} else {
@@ -69,13 +68,13 @@ public final class ReviewServlet extends HttpServlet {
 	 * @param request
 	 * @return new controller if not initiated, else return initiated controller
 	 */
-	protected FrontController getController(HttpServletRequest request) {
+	protected Controller getController(HttpServletRequest request) {
 		if (request.getAttribute("controller") == null) {
-			FrontController controller = new FrontController();
+			Controller controller = new Controller();
 			request.setAttribute("controller", controller);
 			return controller;
 		} else {
-			return (FrontController) request.getAttribute("controller");
+			return (Controller) request.getAttribute("controller");
 		}
 	}
 }

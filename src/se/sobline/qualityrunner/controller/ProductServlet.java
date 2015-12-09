@@ -29,7 +29,7 @@ public final class ProductServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		FrontController controller = getController(request);
+		Controller controller = getController(request);
 		HttpSession session = request.getSession();
 
 		if (controller.getProducts() != null) {
@@ -42,16 +42,14 @@ public final class ProductServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		FrontController controller = new FrontController();
+		Controller controller = new Controller();
 		HttpSession session = request.getSession();
 		
 		String productName = request.getParameter("productname");
 
 		if (currentProduct(controller, productName, session) != null) {
 			Product product = currentProduct(controller, productName, session);
-//			List<Review> productReviews = product.getReviews();
-			// sorting stuff here
-			List<Review> productReviews = controller.sortReviews(product.getReviews());
+			List<Review> productReviews = product.getReviews();
 			session.setAttribute("productReviews", productReviews);
 			getServletContext().getRequestDispatcher("/product.jsp").forward(request, response);
 		} else {
@@ -59,7 +57,7 @@ public final class ProductServlet extends HttpServlet {
 		}
 	}
 
-	private Product currentProduct(FrontController controller, String productName, HttpSession session) {
+	private Product currentProduct(Controller controller, String productName, HttpSession session) {
 		for (Product product : controller.getProducts()) {
 			if (product.getName().equals(productName)) {
 				session.setAttribute("currentProduct", product);
@@ -69,14 +67,14 @@ public final class ProductServlet extends HttpServlet {
 		return null;
 	}
 
-	private FrontController getController(HttpServletRequest request) {
+	private Controller getController(HttpServletRequest request) {
 
 		if (request.getAttribute("controller") == null) {
-			FrontController controller = new FrontController();
+			Controller controller = new Controller();
 			request.setAttribute("controller", controller);
 			return controller;
 		} else {
-			return (FrontController) request.getAttribute("controller");
+			return (Controller) request.getAttribute("controller");
 		}
 	}
 }
