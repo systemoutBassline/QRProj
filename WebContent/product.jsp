@@ -23,14 +23,13 @@
 	<div class="reviewDivInProduct">
 		<form action="ReviewServlet" method="post">
 			<a href="reviews.jsp" target="main">Write review</a>
-			<input type="button" class="productbutton" value="write review" /> 
 			<input type="button" class="productbutton" value="grade: ${currentProduct.grade}/10" />
 		</form>
 		<br />
 		<!-- Kanske sortera reviews så högst betygsatta review är överst -->
 		<c:forEach var="review" items="${productReviews}">
 			<div>
-				<b>${review.title}</b> - ${review.grade}/10 <br /> ${review.text}
+				<b>${review.title}</b> <br /> ${review.text}
 			</div>
 			<br />
 		</c:forEach>

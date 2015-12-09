@@ -37,9 +37,9 @@ public class Main {
 		}
 
 //		System.out.println("--- --- --- PRODUCTS --- --- ---");
-//		Product productOne = new Product(productName, 8, imgUrl);
-//		Product productTwo = new Product(productName2, 9, imgUrl);
-//		Product productThree = new Product("Product Three", 10, imgUrl);
+//		Product productOne = new Product(productName, imgUrl);
+//		Product productTwo = new Product(productName2, imgUrl);
+//		Product productThree = new Product("Product Three", imgUrl);
 //
 //		controller.createProduct(productOne);
 //		controller.createProduct(productTwo);
@@ -48,28 +48,19 @@ public class Main {
 //		System.out.println("--- --- --- REVIEWS --- --- ---");
 //		Review review1 = null, review2 = null, review3 = null;
 //		if (controller.getProduct(productName) != null) {
-//			review1 = new Review(controller.userExists(username), text, 1, "Review 1 Title",
+//			review1 = new Review(controller.userExists(username), text, "Review 1 Title",
 //					controller.getProduct(productName));
-//			review1 = controller.createReview(review1);
-//			productOne = controller.createProduct(productOne);
-//			productOne.add(review1);
-//			productOne = controller.createProduct(productOne);
+//			review1 = controller.createReview(review1, (double)0.0);
 //		}
 //		if (controller.getProduct(productName2) != null) {
-//			review2 = new Review(controller.userExists(username), text, 2, "Review 2 Title",
+//			review2 = new Review(controller.userExists(username), text, "Review 2 Title",
 //					controller.getProduct(productName2));
-//			review2 = controller.createReview(review2);
-//			productTwo = controller.getProduct(productName2);
-//			productTwo.add(review2);
-//			productTwo = controller.createProduct(productTwo);
+//			review2 = controller.createReview(review2, (double)1.1);
 //		}
 //		if (controller.getProduct(productName) != null) {
-//			review3 = new Review(controller.userExists(username2), text, 3, "Review 3 Title",
+//			review3 = new Review(controller.userExists(username2), text, "Review 3 Title",
 //					controller.getProduct(productName));
-//			review3 = controller.createReview(review3);
-//			productOne = controller.createProduct(productOne);
-//			productOne.add(review3);
-//			productOne = controller.createProduct(productOne);
+//			review3 = controller.createReview(review3, (double)2.2);
 //		}
 
 		System.out.println("USER:");

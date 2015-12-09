@@ -28,7 +28,13 @@ public class Product extends AbstractEntity implements Serializable {
 	private String name;
 
 	@Column(nullable = false)
-	private int grade;
+	private double grade;
+
+	@Column(nullable = false)
+	private double totalGrade;
+
+	@Column(nullable = false)
+	private long totalNumberOfGrades;
 
 	@Column
 	private String imgURL;
@@ -40,9 +46,11 @@ public class Product extends AbstractEntity implements Serializable {
 		super();
 	}
 
-	public Product(String name, int grade, String imgURL) {
+	public Product(String name, String imgURL) {
 		this.name = name;
-		this.grade = grade;
+		this.totalGrade = 0.0;
+		this.totalNumberOfGrades = 0L;
+		this.grade = 0.0;
 		this.imgURL = imgURL;
 		this.reviews = new ArrayList<>();
 	}
@@ -56,7 +64,8 @@ public class Product extends AbstractEntity implements Serializable {
 		return name;
 	}
 
-	public int getGrade() {
+	public double getGrade() {
+		grade = Math.round((grade * 100.00) / 100.00);
 		return grade;
 	}
 
@@ -70,5 +79,12 @@ public class Product extends AbstractEntity implements Serializable {
 
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
+	}
+
+	public double setGrade(Double grade) {
+		totalNumberOfGrades++;
+		totalGrade = totalGrade + grade;
+		this.grade = totalGrade / totalNumberOfGrades;
+		return this.grade;
 	}
 }
