@@ -16,9 +16,9 @@
 <center><h1>system.out.Bassline</h1></center>
 <br/>
 Our main goal is to unite people with the power of music.
-<br/>For starters we'll give everyone the opportunity to add
-<br/>whatever the user want and give it a review for registered users to see. 
-<br/>The user can give a grade and/or a review on the quality of the whatever.
+<br/>For starters we'll give everyone the opportunity to review
+<br/>existing products for other registered users to see. 
+<br/>The user can give a grade and/or a review on the quality of the products.
 <br/>
 <br/>
 Happy to be at your service!

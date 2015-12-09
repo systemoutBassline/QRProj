@@ -16,18 +16,13 @@
 
 	<h2>${currentProduct.name}</h2>
 
-	<b>Info:</b> some text here about the product, so ill just
-		blurt letter for the rest of the bit or whatever.. <br /> adnaugeau f
-		awdaw dagpjeaigj ad apifsjfiwa bouranigjepa pdwj angenaon
-		faunfuanfeoaf afaiej ae fjaeijaf a9fjaepigna gnnaeugbaegparogj apenf
-		aeouean aogreaåfojeaå mai aonwidnaw idjaw+ a+gj ae+ign ae+iganwida
-		d+wajwfd+9a jidakmmwdöawmåpirhgur
+	${currentProduct.text}
 	<br />
 	<br />
 	
 	<div class="reviewDivInProduct">
 		<form action="ReviewServlet" method="post">
-			<a href="reviews.jsp" target="main">write review</a> 
+			<a href="reviews.jsp" target="main">Write review</a>
 			<input type="button" class="productbutton" value="grade: ${currentProduct.grade}/10" />
 		</form>
 		<br />

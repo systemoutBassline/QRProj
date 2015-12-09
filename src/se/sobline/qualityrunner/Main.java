@@ -37,9 +37,9 @@ public class Main {
 		}
 
 		System.out.println("--- --- --- PRODUCTS --- --- ---");
-		Product productOne = new Product(productName, imgUrl);
-		Product productTwo = new Product(productName2, imgUrl);
-		Product productThree = new Product("Product Three", imgUrl);
+		Product productOne = new Product(productName, imgUrl, text);
+		Product productTwo = new Product(productName2, imgUrl, text);
+		Product productThree = new Product("Product Three", imgUrl, text);
 
 		controller.createProduct(productOne);
 		controller.createProduct(productTwo);
