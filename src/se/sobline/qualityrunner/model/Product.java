@@ -26,6 +26,9 @@ public class Product extends AbstractEntity implements Serializable {
 
 	@Column(nullable = false)
 	private String name;
+	
+	@Column(nullable = false)
+	private String text;
 
 	@Column(nullable = false)
 	private double grade;
@@ -46,8 +49,9 @@ public class Product extends AbstractEntity implements Serializable {
 		super();
 	}
 
-	public Product(String name, String imgURL) {
+	public Product(String name, String imgURL, String text) {
 		this.name = name;
+		this.text = text;
 		this.totalGrade = 0.0;
 		this.totalNumberOfGrades = 0L;
 		this.grade = 0.0;
@@ -86,5 +90,9 @@ public class Product extends AbstractEntity implements Serializable {
 		totalGrade = totalGrade + grade;
 		this.grade = totalGrade / totalNumberOfGrades;
 		return this.grade;
+	}
+	
+	public String getText() {
+		return text;
 	}
 }
