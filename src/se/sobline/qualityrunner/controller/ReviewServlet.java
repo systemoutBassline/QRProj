@@ -13,7 +13,7 @@ import se.sobline.qualityrunner.model.Product;
 import se.sobline.qualityrunner.model.Review;
 
 /**
- * Servlet implementation class ReviewServlet
+ * Servlet for adding a review to a product
  * @author Charlotte & Joel
  * @since 09.12.2015
  * @version 1.0

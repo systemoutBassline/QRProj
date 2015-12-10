@@ -205,8 +205,9 @@ li {
 	color: gray;
 }
 
-.reviewDivInProduct input[type="button"] {
-	border: 1px solid #000000;
+.reviewsDiv {
+	border: 0px solid #000000;
+	overflow: auto;
 }
 
 </style>

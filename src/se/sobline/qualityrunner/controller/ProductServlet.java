@@ -14,7 +14,7 @@ import se.sobline.qualityrunner.model.Product;
 import se.sobline.qualityrunner.model.Review;
 
 /**
- * Servlet implementation class ProductServlet
+ * Servlet that displays the product list, and separate products.
  * @author Charlotte & Joel
  * @since 09.12.2015
  * @version 1.0

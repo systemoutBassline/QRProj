@@ -36,14 +36,11 @@ public final class Controller {
 	private final ProductDAO productDAO;
 	private final ReviewDAO reviewDAO;
 
-	/**
-	 * Borde den här klassen läggas upp i sessionen? För att man skall ha samma
-	 * objekt vilken servlet man än använder?
-	 */
 	public Controller() {
 		userDAO = new JPAUserDAO(factory);
 		productDAO = new JPAProductDAO(factory);
 		reviewDAO = new JPAReviewDAO(factory);
+		initialize();
 	}
 
 	public Product createProduct(Product product) {
@@ -162,4 +159,27 @@ public final class Controller {
 		productInput = Jsoup.clean(productInput, Whitelist.none().removeAttributes(":all", "class"));
 		return productInput;
 	}
+
+	private void initialize() {
+		if ((getProducts() == null) || (getProducts().size() <= 0)) {
+			String imgUrl = "http://img1.wikia.nocookie.net/__cb20120204010934/evangelion/images/4/47/Placeholder.png";
+			String text = "This is where the description of the product is written. Since the product is not real, "
+					+ "this text is just lots of bullshit! But imagine some fancy words trying to sell the product and so on.. "
+					+ "Bellow is where you'll fint reviews of this product. Read them, or write your own review.";
+
+			createProduct(new Product("Product One", imgUrl, text));
+			createProduct(new Product("Product Two", imgUrl, text));
+			createProduct(new Product("Product Three", imgUrl, text));
+
+			createUser("demoUser", "password");
+
+			createReview(new Review(userExists("demoUser"), text, "Pretend Review One", 
+					getProduct("Product One")), 5.0);
+			createReview(new Review(userExists("demoUser"), text, "Pretend Review Two", 
+					getProduct("Product One")), 10.0);
+			createReview(new Review(userExists("demoUser"), text, "Pretend Review Three", 
+					getProduct("Product Two")), 2.0);
+		}
+	}
+
 }

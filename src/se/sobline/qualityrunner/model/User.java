@@ -14,14 +14,13 @@ import javax.persistence.Table;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 
 /**
- * @author Charlotte & Joel
- * Entity implementation class for Entity: User
+ * @author Charlotte & Joel Entity implementation class for Entity: User
  * @since 09.12.2015
  * @version 1.0
  */
 @NamedQueries(value = { @NamedQuery(name = "User.getAll", query = "SELECT u FROM User u"),
 		@NamedQuery(name = "User.getUser", query = "SELECT u FROM User u WHERE u.username = :username") })
-@Table(name = "USERS", schema = "QR")
+@Table(name = "USERS", schema = "QUALITYRUNNER")
 @Entity
 public class User extends AbstractEntity implements Serializable {
 

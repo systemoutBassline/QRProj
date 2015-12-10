@@ -26,13 +26,14 @@
 		</form>
 		<hr></hr>
 		<br />
-		<!-- Kanske sortera reviews så högst betygsatta review är överst -->
-		<c:forEach var="review" items="${productReviews}">
-			<div>
-				<b>${review.title}</b> <br /> ${review.text}
-			</div>
-			<br />
-		</c:forEach>
+		<div class="reviewsDiv">
+			<c:forEach var="review" items="${productReviews}">
+				<div>
+					<b>${review.title}</b> <br /> ${review.text}
+				</div>
+				<br />
+			</c:forEach>
+		</div>
 	</div>
 
 </h:body>

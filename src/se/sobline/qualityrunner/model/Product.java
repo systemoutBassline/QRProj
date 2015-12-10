@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -19,7 +20,7 @@ import jdk.nashorn.internal.ir.annotations.Ignore;
  * @version 1.0
  */
 @Entity
-@Table(name = "PRODUCTS", schema = "QR")
+@Table(name = "PRODUCTS", schema = "QUALITYRUNNER")
 @NamedQuery(name = "Product.getAll", query = "SELECT p FROM Product p")
 public class Product extends AbstractEntity implements Serializable {
 
@@ -28,8 +29,9 @@ public class Product extends AbstractEntity implements Serializable {
 
 	@Column(nullable = false)
 	private String name;
-	
-	@Column(nullable = false)
+
+	@Lob
+	@Column(columnDefinition="CLOB NOT NULL")
 	private String text;
 
 	@Column(nullable = false)

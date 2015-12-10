@@ -2,6 +2,7 @@ package se.sobline.qualityrunner.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -16,7 +17,7 @@ import jdk.nashorn.internal.ir.annotations.Ignore;
  */
 
 @Entity
-@Table(name = "REVIEWS", schema = "QR")
+@Table(name = "REVIEWS", schema = "QUALITYRUNNER")
 @NamedQueries(value = { @NamedQuery(name = "Review.getAll", query = "SELECT r FROM Review r"),
 		@NamedQuery(name = "Review.getProductReview", query = "SELECT r FROM Review r WHERE r.product.name = :name") })
 
@@ -28,7 +29,8 @@ public class Review extends AbstractEntity {
 	@ManyToOne(optional = false)
 	private User user;
 
-	@Column(nullable = false)
+	@Lob
+	@Column(columnDefinition="CLOB NOT NULL")
 	private String text;
 
 	@Column(nullable = false)
